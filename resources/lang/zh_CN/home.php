@@ -1,4 +1,5 @@
 <?php
+
 return [
     'labels' => [
         'Dashboard' => '仪表盘',

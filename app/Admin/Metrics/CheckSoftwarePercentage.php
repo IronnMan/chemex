@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Admin\Metrics;
-
 
 use App\Models\CheckRecord;
 use App\Models\CheckTrack;
@@ -29,12 +27,12 @@ class CheckSoftwarePercentage extends Card
 
         $software_records_all = SoftwareRecord::all()->count();
         $check_record = CheckRecord::where('check_item', 'software')->where('status', 0)->first();
-        if (!empty($check_record)) {
+        if (! empty($check_record)) {
             $check_tracks_counts = CheckTrack::where('check_id', $check_record->id)
                 ->where('status', '!=', 0)
                 ->get()
                 ->count();
-            $done_counts = '盘点进度：' . $check_tracks_counts . ' / ' . $software_records_all;
+            $done_counts = '盘点进度：'.$check_tracks_counts.' / '.$software_records_all;
             try {
                 $percentage = round($check_tracks_counts / $software_records_all * 100, 2);
             } catch (Exception $exception) {
@@ -50,7 +48,6 @@ class CheckSoftwarePercentage extends Card
         <div class="progress-bar bg-info" style="background: rgba(70,160,153,1);width: {$percentage}%"></div>
     </div>
 HTML;
-
 
         if ($percentage == 0) {
             $display = '';

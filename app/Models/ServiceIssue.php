@@ -23,7 +23,7 @@ class ServiceIssue extends Model
     protected $table = 'service_issues';
 
     /**
-     * 服务程序异常有一个服务程序记录
+     * 服务程序异常有一个服务程序记录.
      * @return HasOne
      */
     public function service(): HasOne

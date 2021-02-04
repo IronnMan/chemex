@@ -15,7 +15,7 @@ use Illuminate\Http\JsonResponse;
 class VersionController extends Controller
 {
     /**
-     * 页面
+     * 页面.
      * @param Content $content
      * @return Content
      */
@@ -31,14 +31,14 @@ class VersionController extends Controller
                 $row->column(3, function (Column $column) use ($version) {
                     $column->row(new Card('当前版本', $version));
                 });
-                $row->column(9, function (Column $column) use ($version, $description) {
+                $row->column(9, function (Column $column) use ($description) {
                     $column->row(new Card($description['name'], $description['description']));
                 });
             });
     }
 
     /**
-     * 更新数据库结构
+     * 更新数据库结构.
      * @return JsonResponse
      */
     public function migrate(): JsonResponse
@@ -47,19 +47,20 @@ class VersionController extends Controller
         if ($result) {
             $return = response()->json([
                 'code' => 200,
-                'message' => '更新数据库结构成功'
+                'message' => '更新数据库结构成功',
             ]);
         } else {
             $return = response()->json([
                 'code' => 500,
-                'message' => '更新数据库结构失败'
+                'message' => '更新数据库结构失败',
             ]);
         }
+
         return response()->json($return);
     }
 
     /**
-     * 清理全部缓存
+     * 清理全部缓存.
      * @return JsonResponse
      */
     public function clear(): JsonResponse
@@ -68,19 +69,20 @@ class VersionController extends Controller
         if ($result) {
             $return = response()->json([
                 'code' => 200,
-                'message' => '缓存清理成功'
+                'message' => '缓存清理成功',
             ]);
         } else {
             $return = response()->json([
                 'code' => 500,
-                'message' => '缓存清理失败'
+                'message' => '缓存清理失败',
             ]);
         }
+
         return response()->json($return);
     }
 
     /**
-     * 获取远程版本号
+     * 获取远程版本号.
      * @return string|null
      */
     public function getRemoteVersion(): ?string

@@ -26,9 +26,9 @@ class ServiceTrackController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.record'), route('service.records.index'));
-                $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
-                $tab->addLink(Data::icon('issue') . trans('main.issue'), route('service.issues.index'));
+                $tab->addLink(Data::icon('record').trans('main.record'), route('service.records.index'));
+                $tab->add(Data::icon('track').trans('main.track'), $this->grid(), true);
+                $tab->addLink(Data::icon('issue').trans('main.issue'), route('service.issues.index'));
                 $row->column(12, $tab);
             });
     }

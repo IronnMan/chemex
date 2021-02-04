@@ -29,7 +29,7 @@ class AuthController extends BaseAuthController
     {
         $form = $this->settingForm();
 
-        if (!$this->validateCredentialsWhenUpdatingPassword()) {
+        if (! $this->validateCredentialsWhenUpdatingPassword()) {
             $form->responseValidationMessages('old_password', trans('admin.old_password_error'));
         }
 
@@ -49,7 +49,7 @@ class AuthController extends BaseAuthController
         $password = $request->password;
 
         /**
-         * LDAP验证处理
+         * LDAP验证处理.
          */
         if (admin_setting('ad_enabled') && admin_setting('ad_login')) {
             $ldap = new LDAP();
@@ -83,11 +83,10 @@ class AuthController extends BaseAuthController
                 // 如果LDAP服务器连接出现异常，这里可以做异常处理的逻辑
                 // 暂时没有任何逻辑，因此只需要抛出异常即可
             }
-
         }
 
         $credentials = $request->only([$this->username(), 'password']);
-        $remember = (bool)$request->input('remember', false);
+        $remember = (bool) $request->input('remember', false);
 
         /** @var \Illuminate\Validation\Validator $validator */
         $validator = Validator::make($credentials, [

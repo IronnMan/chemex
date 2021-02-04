@@ -16,6 +16,7 @@ class ConfigurationLDAPForm extends Form
     public function handle(array $input)
     {
         admin_setting($input);
+
         return $this
             ->response()
             ->success('LDAP配置更新成功！')
@@ -69,7 +70,7 @@ class ConfigurationLDAPForm extends Form
             ->required()
             ->default(admin_setting('ad_bind_administrator'));
         $this->html(function () {
-            return <<<HTML
+            return <<<'HTML'
 <a class='btn btn-success' style='color: #FFFFFF;' onclick="test()">测试连接（请先保存配置）</a>
 <script>
 function test(){

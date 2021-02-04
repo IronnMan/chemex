@@ -1,4 +1,5 @@
 <?php
+
 return [
     'labels' => [
         'Platform' => '平台配置',

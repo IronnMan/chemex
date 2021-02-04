@@ -13,7 +13,7 @@ class DeviceSSHInfoForm extends Form implements LazyRenderable
     use LazyWidget;
 
     /**
-     * 处理表单提交逻辑
+     * 处理表单提交逻辑.
      * @param array $input
      * @return JsonResponse
      */
@@ -32,7 +32,7 @@ class DeviceSSHInfoForm extends Form implements LazyRenderable
         $ssh_port = $input['ssh_port'] ?? null;
 
         // 如果没有设备id或者SSH相关信息则返回错误
-        if (!$device_id || !$ssh_username || !$ssh_password || !$ssh_port) {
+        if (! $device_id || ! $ssh_username || ! $ssh_password || ! $ssh_port) {
             return $this->response()
                 ->error('参数错误！');
         }
@@ -40,7 +40,7 @@ class DeviceSSHInfoForm extends Form implements LazyRenderable
         // 设备记录
         $device = DeviceRecord::where('id', $device_id)->first();
         // 如果没有找到这个设备记录则返回错误
-        if (!$device) {
+        if (! $device) {
             return $this->response()
                 ->error('设备不存在！');
         }
@@ -56,7 +56,7 @@ class DeviceSSHInfoForm extends Form implements LazyRenderable
     }
 
     /**
-     * 构造表单
+     * 构造表单.
      */
     public function form()
     {

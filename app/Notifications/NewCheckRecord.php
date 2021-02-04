@@ -6,7 +6,6 @@ use App\Models\CheckRecord;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 
-
 class NewCheckRecord extends Notification
 {
     use Queueable;
@@ -54,9 +53,9 @@ class NewCheckRecord extends Notification
         return [
             'check_record_id' => $this->check_record->id,
             'title' => '你有新的盘点任务',
-            'content' => '一份' . $item_type . '盘点任务已经交由你负责。',
+            'content' => '一份'.$item_type.'盘点任务已经交由你负责。',
             'expired' => $this->check_record->end_time,
-            'url' => route('check.records.show', $this->check_record->id)
+            'url' => route('check.records.show', $this->check_record->id),
         ];
     }
 }

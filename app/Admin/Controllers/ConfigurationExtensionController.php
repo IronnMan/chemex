@@ -10,7 +10,7 @@ use Dcat\Admin\Widgets\Tab;
 class ConfigurationExtensionController extends ExtensionController
 {
     /**
-     * 页面
+     * 页面.
      * @param Content $content
      * @return Content
      */

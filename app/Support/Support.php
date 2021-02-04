@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Support;
-
 
 use App\Models\CheckRecord;
 use App\Models\CheckTrack;
@@ -28,7 +26,7 @@ use Illuminate\Support\Facades\File;
 class Support
 {
     /**
-     * 获取所有物品的类型和ID，并且以 device:1 形式加入到数组中返回
+     * 获取所有物品的类型和ID，并且以 device:1 形式加入到数组中返回.
      * @return array
      */
     public static function getAllItemTypeAndId(): array
@@ -39,19 +37,20 @@ class Support
         $software_records = SoftwareRecord::all();
 
         foreach ($device_records as $device_record) {
-            array_push($data, 'device:' . $device_record->id . '&#10;');
+            array_push($data, 'device:'.$device_record->id.'&#10;');
         }
         foreach ($part_records as $part_record) {
-            array_push($data, 'part:' . $part_record->id . '&#10;');
+            array_push($data, 'part:'.$part_record->id.'&#10;');
         }
         foreach ($software_records as $software_record) {
-            array_push($data, 'software:' . $software_record->id . '&#10;');
+            array_push($data, 'software:'.$software_record->id.'&#10;');
         }
+
         return $data;
     }
 
     /**
-     * 获取设备当前最新的使用者
+     * 获取设备当前最新的使用者.
      * @param $device_id
      * @return string
      */
@@ -71,7 +70,7 @@ class Support
     }
 
     /**
-     * 物品履历 形成清单数组（未排序）
+     * 物品履历 形成清单数组（未排序）.
      * @param $template
      * @param $item_track
      * @param array $data
@@ -82,16 +81,17 @@ class Support
         $template['status'] = '+';
         $template['datetime'] = json_decode($item_track, true)['created_at'];
         array_push($data, $template);
-        if (!empty($item_track->deleted_at)) {
+        if (! empty($item_track->deleted_at)) {
             $template['status'] = '-';
             $template['datetime'] = json_decode($item_track, true)['deleted_at'];
             array_push($data, $template);
         }
+
         return $data;
     }
 
     /**
-     * 计算盘点任务记录的数量
+     * 计算盘点任务记录的数量.
      * @param $check_id
      * @param string $type
      * @return int
@@ -130,7 +130,7 @@ class Support
     }
 
     /**
-     * 雇员id换取name
+     * 雇员id换取name.
      * @param $staff_id
      * @return string
      */
@@ -140,18 +140,19 @@ class Support
         if (empty($staff)) {
             return '雇员失踪';
         }
+
         return $staff->name;
     }
 
     /**
-     * 雇员id换取部门name
+     * 雇员id换取部门name.
      * @param $staff_id
      * @return mixed
      */
     public static function staffIdToDepartmentName($staff_id): string
     {
         $staff = StaffRecord::where('id', $staff_id)->first();
-        if (!empty($staff)) {
+        if (! empty($staff)) {
             return $staff->department->name;
         } else {
             return '无部门';
@@ -159,7 +160,7 @@ class Support
     }
 
     /**
-     * 设备ID换取雇员名称
+     * 设备ID换取雇员名称.
      * @param $device_id
      * @return string
      */
@@ -179,7 +180,7 @@ class Support
     }
 
     /**
-     * 设备id获取操作系统标识
+     * 设备id获取操作系统标识.
      * @param $device_id
      * @return string
      */
@@ -209,14 +210,15 @@ class Support
      */
     public static function setEnv(array $data)
     {
-        $envPath = base_path() . DIRECTORY_SEPARATOR . '.env';
+        $envPath = base_path().DIRECTORY_SEPARATOR.'.env';
         $contentArray = collect(file($envPath, FILE_IGNORE_NEW_LINES));
         $contentArray->transform(function ($item) use ($data) {
             foreach ($data as $key => $value) {
                 if (str_contains($item, $key)) {
-                    return $key . '=' . $value;
+                    return $key.'='.$value;
                 }
             }
+
             return $item;
         });
         $content = implode("\n", $contentArray->toArray());
@@ -224,7 +226,7 @@ class Support
     }
 
     /**
-     * 构造WebSSH连接字符串
+     * 构造WebSSH连接字符串.
      * @param $host
      * @param $port
      * @param $username
@@ -237,7 +239,7 @@ class Support
     }
 
     /**
-     * 物品id换取物品名称
+     * 物品id换取物品名称.
      * @param $item
      * @param $item_id
      * @return string
@@ -253,7 +255,7 @@ class Support
     }
 
     /**
-     * 通过类名获取对应物资的模型
+     * 通过类名获取对应物资的模型.
      * @param $item
      * @param $item_id
      * @return null
@@ -271,6 +273,7 @@ class Support
             default:
                 $item_record = DeviceRecord::where('id', $item_id)->first();
         }
+
         return $item_record;
     }
 
@@ -287,7 +290,6 @@ class Support
         if (empty($depreciation)) {
             return $price;
         } else {
-
             $purchased_timestamp = strtotime($date);
             $now_timestamp = time();
 
@@ -302,28 +304,29 @@ class Support
             $return = array_filter($data, function ($item) use ($diff) {
                 switch ($item['scale']) {
                     case 'month':
-                        $number = (int)$item['number'] * 24 * 60 * 60 * 30;
+                        $number = (int) $item['number'] * 24 * 60 * 60 * 30;
                         break;
                     case 'year':
-                        $number = (int)$item['number'] * 24 * 60 * 60 * 365;
+                        $number = (int) $item['number'] * 24 * 60 * 60 * 365;
                         break;
                     default:
-                        $number = (int)$item['number'] * 24 * 60 * 60;
+                        $number = (int) $item['number'] * 24 * 60 * 60;
                 }
 
                 return $diff >= $number;
             });
 
-            if (!empty($return)) {
+            if (! empty($return)) {
                 array_multisort(array_column($return, 'number'), SORT_DESC, $return);
-                $price = $price * (double)$return[0]['ratio'];
+                $price = $price * (float) $return[0]['ratio'];
             }
+
             return $price;
         }
     }
 
     /**
-     * 根据模型查找折旧规则的id（记录的优先级>分类的优先级）
+     * 根据模型查找折旧规则的id（记录的优先级>分类的优先级）.
      * @param Model $model
      * @return mixed|null
      */
@@ -338,7 +341,7 @@ class Support
             if ($model instanceof PartRecord) {
                 $category = PartCategory::where('id', $model->category_id)->first();
             }
-            if (!empty($category) && !empty($category->depreciation_rule_id)) {
+            if (! empty($category) && ! empty($category->depreciation_rule_id)) {
                 $depreciation_rule_id = $category->depreciation_rule_id;
             }
         } else {
@@ -349,7 +352,7 @@ class Support
     }
 
     /**
-     * 判断是否切换到selectCreate
+     * 判断是否切换到selectCreate.
      * @return bool
      */
     public static function ifSelectCreate(): bool
@@ -362,7 +365,7 @@ class Support
     }
 
     /**
-     * 某个耗材总数
+     * 某个耗材总数.
      * @param $consumable_id
      * @return float
      */
@@ -377,7 +380,7 @@ class Support
     }
 
     /**
-     * 获取配件当前归属的设备
+     * 获取配件当前归属的设备.
      * @param $part_id
      * @return string
      */
@@ -397,7 +400,7 @@ class Support
     }
 
     /**
-     * 获取服务异常总览（看板）
+     * 获取服务异常总览（看板）.
      * @return ServiceRecord[]|Collection
      */
     public static function getServiceIssueStatus()
@@ -427,13 +430,13 @@ class Support
                 // 如果异常待修复
                 if ($service_issue->status == 1) {
                     $service->status = 1;
-                    $issue = $service_issue->issue . '<br>';
+                    $issue = $service_issue->issue.'<br>';
                     array_push($issues, $issue);
                 }
                 // 如果是修复的
                 if ($service_issue->status == 2) {
                     $service->status = 0;
-                    $issue = '<span class="status-recovery">[已修复最近一个问题]</span> ' . $service_issue->issue . '<br>';
+                    $issue = '<span class="status-recovery">[已修复最近一个问题]</span> '.$service_issue->issue.'<br>';
                     if ((time() - strtotime($service_issue->end)) > (24 * 60 * 60)) {
                         $issue = '';
                         $service->start = '';
@@ -458,11 +461,12 @@ class Support
             $service->issues = $issues;
         }
         $services = json_decode($services, true);
+
         return $services;
     }
 
     /**
-     * 获取软件当前剩余授权数量
+     * 获取软件当前剩余授权数量.
      * @param $software_id
      * @return int|string
      */

@@ -10,7 +10,6 @@ class MiddleInjectDcatPlus
 {
     public function handle(Request $request, Closure $next)
     {
-
         $support = new Support();
         $support->initConfig();
         $support->injectSidebar();

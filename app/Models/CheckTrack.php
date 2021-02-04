@@ -22,7 +22,7 @@ class CheckTrack extends Model
     protected $table = 'check_tracks';
 
     /**
-     * 盘点追踪有一个负责人
+     * 盘点追踪有一个负责人.
      * @return HasOne
      */
     public function checker(): HasOne

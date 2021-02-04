@@ -16,7 +16,7 @@ use Dcat\Admin\Widgets\Tab;
 class ConfigurationLDAPController extends Controller
 {
     /**
-     * 页面
+     * 页面.
      * @param Content $content
      * @return Content
      */
@@ -41,9 +41,10 @@ class ConfigurationLDAPController extends Controller
     public function test()
     {
         try {
-            if (!admin_setting('ad_enabled')) {
+            if (! admin_setting('ad_enabled')) {
                 return -3;
             }
+
             return LDAP::auth();
         } catch (BindException $e) {
             return $e->getMessage();

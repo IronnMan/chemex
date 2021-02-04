@@ -55,7 +55,7 @@ class ConsumableRecordController extends AdminController
 
             $grid->tools([
                 new ConsumableInAction(),
-                new ConsumableOutAction()
+                new ConsumableOutAction(),
             ]);
 
             $grid->filter(function (Grid\Filter $filter) {

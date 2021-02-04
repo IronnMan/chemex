@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Admin\Metrics;
-
 
 use App\Models\CheckRecord;
 use App\Models\CheckTrack;
@@ -29,12 +27,12 @@ class CheckPartPercentage extends Card
 
         $part_records_all = PartRecord::all()->count();
         $check_record = CheckRecord::where('check_item', 'software')->where('status', 0)->first();
-        if (!empty($check_record)) {
+        if (! empty($check_record)) {
             $check_tracks_counts = CheckTrack::where('check_id', $check_record->id)
                 ->where('status', '!=', 0)
                 ->get()
                 ->count();
-            $done_counts = '盘点进度：' . $check_tracks_counts . ' / ' . $part_records_all;
+            $done_counts = '盘点进度：'.$check_tracks_counts.' / '.$part_records_all;
             try {
                 $percentage = round($check_tracks_counts / $part_records_all * 100, 2);
             } catch (Exception $exception) {
@@ -54,7 +52,6 @@ HTML;
         if ($percentage == 0) {
             $display = '';
         }
-
 
         $html = <<<HTML
 <div class="info-box" style="background:transparent;margin-bottom: 0;padding: 0;">

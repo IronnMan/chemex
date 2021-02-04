@@ -28,9 +28,9 @@ class ServiceIssueController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.record'), route('service.records.index'));
-                $tab->addLink(Data::icon('track') . trans('main.track'), route('service.tracks.index'));
-                $tab->add(Data::icon('issue') . trans('main.issue'), $this->grid(), true);
+                $tab->addLink(Data::icon('record').trans('main.record'), route('service.records.index'));
+                $tab->addLink(Data::icon('track').trans('main.track'), route('service.tracks.index'));
+                $tab->add(Data::icon('issue').trans('main.issue'), $this->grid(), true);
                 $row->column(12, $tab);
             });
     }
@@ -43,7 +43,6 @@ class ServiceIssueController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new ServiceIssue(['service']), function (Grid $grid) {
-
             $grid->model()->orderBy('status', 'ASC');
 
             $grid->column('id');
@@ -75,10 +74,9 @@ class ServiceIssueController extends AdminController
             $grid->selector(function (Selector $selector) {
                 $selector->select('status', [
                     1 => trans('service_issue_status_ng'),
-                    2 => trans('service_issue_status_ok')
+                    2 => trans('service_issue_status_ok'),
                 ]);
             });
-
         });
     }
 

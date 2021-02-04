@@ -20,7 +20,7 @@ class MaintenanceCreateAction extends RowAction
     }
 
     /**
-     * 渲染模态框
+     * 渲染模态框.
      * @return Modal|string
      */
     public function render()
@@ -28,12 +28,12 @@ class MaintenanceCreateAction extends RowAction
         // 实例化表单类并传递自定义参数
         $form = MaintenanceCreateForm::make()->payload([
             'item' => $this->item,
-            'item_id' => $this->getKey()
+            'item_id' => $this->getKey(),
         ]);
 
         return Modal::make()
             ->lg()
-            ->title('报告 ' . $this->getRow()->name . ' 发生的故障')
+            ->title('报告 '.$this->getRow()->name.' 发生的故障')
             ->body($form)
             ->button($this->title);
     }

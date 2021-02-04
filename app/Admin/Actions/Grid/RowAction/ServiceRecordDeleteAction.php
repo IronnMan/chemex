@@ -13,12 +13,12 @@ class ServiceRecordDeleteAction extends RowAction
     protected $title = '🔨 删除服务';
 
     /**
-     * 处理动作逻辑
+     * 处理动作逻辑.
      * @return Response
      */
     public function handle(): Response
     {
-        if (!Admin::user()->can('service.record.delete')) {
+        if (! Admin::user()->can('service.record.delete')) {
             return $this->response()
                 ->error('你没有权限执行此操作！')
                 ->refresh();
@@ -40,12 +40,12 @@ class ServiceRecordDeleteAction extends RowAction
         $service->delete();
 
         return $this->response()
-            ->success('成功删除服务: ' . $service->name)
+            ->success('成功删除服务: '.$service->name)
             ->refresh();
     }
 
     /**
-     * 对话框
+     * 对话框.
      * @return string[]
      */
     public function confirm(): array

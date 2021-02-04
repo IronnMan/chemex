@@ -29,7 +29,7 @@ use Dcat\Admin\Widgets\Tab;
 /**
  * @property DeviceRecord device
  * @property int id
- * @property double price
+ * @property float price
  * @property string purchased
  */
 class PartRecordController extends AdminController
@@ -41,9 +41,9 @@ class PartRecordController extends AdminController
             ->description($this->description()['index'] ?? trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category') . trans('main.category'), route('part.categories.index'));
-                $tab->addLink(Data::icon('track') . trans('main.track'), route('part.tracks.index'));
+                $tab->add(Data::icon('record').trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('category').trans('main.category'), route('part.categories.index'));
+                $tab->addLink(Data::icon('track').trans('main.track'), route('part.tracks.index'));
                 $row->column(12, $tab);
 
 //                $row->column(12, function (Column $column) {
@@ -68,7 +68,7 @@ class PartRecordController extends AdminController
         return Grid::make(new PartRecord(['category', 'vendor', 'device', 'depreciation']), function (Grid $grid) {
             $grid->column('id');
             $grid->column('qrcode')->qrcode(function () {
-                return 'part:' . $this->id;
+                return 'part:'.$this->id;
             }, 200, 200);
             $grid->column('asset_number');
             $grid->column('name');
@@ -81,7 +81,7 @@ class PartRecordController extends AdminController
                 return ExpirationService::itemExpirationLeftDaysRender('part', $this->id);
             });
             $grid->column('device.name')->link(function () {
-                if (!empty($this->device)) {
+                if (! empty($this->device)) {
                     return route('device.records.show', $this->device['id']);
                 }
             });
@@ -123,11 +123,11 @@ class PartRecordController extends AdminController
             $grid->disableBatchDelete();
 
             $grid->batchActions([
-                new PartRecordBatchDeleteAction()
+                new PartRecordBatchDeleteAction(),
             ]);
 
             $grid->tools([
-                new PartRecordImportAction()
+                new PartRecordImportAction(),
             ]);
 
             $grid->toolsWithOutline(false);
@@ -158,8 +158,9 @@ class PartRecordController extends AdminController
             $show->field('price');
             $show->field('expiration_left_days')->as(function () {
                 $part_record = \App\Models\PartRecord::where('id', $this->id)->first();
-                if (!empty($part_record)) {
+                if (! empty($part_record)) {
                     $depreciation_rule_id = Support::getDepreciationRuleId($part_record);
+
                     return Support::depreciationPrice($this->price, $this->purchased, $depreciation_rule_id);
                 }
             });

@@ -14,21 +14,20 @@ use Dcat\Admin\Widgets\Form;
 
 /**
  * 设备记录分配使用者
- * Class DeviceTrackCreateUpdateForm
- * @package App\Admin\Forms
+ * Class DeviceTrackCreateUpdateForm.
  */
 class PartTrackCreateUpdateForm extends Form implements LazyRenderable
 {
     use LazyWidget;
 
     /**
-     * 处理表单提交逻辑
+     * 处理表单提交逻辑.
      * @param array $input
      * @return JsonResponse
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('part.track.create_update')) {
+        if (! Admin::user()->can('part.track.create_update')) {
             return $this->response()
                 ->error('你没有权限执行此操作！')
                 ->refresh();
@@ -41,7 +40,7 @@ class PartTrackCreateUpdateForm extends Form implements LazyRenderable
         $device_id = $input['device_id'] ?? null;
 
         // 如果没有配件id或者设备id则返回错误
-        if (!$part_id || !$device_id) {
+        if (! $part_id || ! $device_id) {
             return $this->response()
                 ->error('参数错误');
         }
@@ -49,7 +48,7 @@ class PartTrackCreateUpdateForm extends Form implements LazyRenderable
         // 配件记录
         $part = PartRecord::where('id', $part_id)->first();
         // 如果没有找到这个配件记录则返回错误
-        if (!$part) {
+        if (! $part) {
             return $this->response()
                 ->error('配件不存在');
         }
@@ -57,7 +56,7 @@ class PartTrackCreateUpdateForm extends Form implements LazyRenderable
         // 设备记录
         $device = DeviceRecord::where('id', $device_id)->first();
         // 如果没有找到这个设备记录则返回错误
-        if (!$device) {
+        if (! $device) {
             return $this->response()
                 ->error('设备不存在');
         }
@@ -67,7 +66,7 @@ class PartTrackCreateUpdateForm extends Form implements LazyRenderable
             ->first();
 
         // 如果配件追踪非空，则删除旧追踪，为了留下流水记录
-        if (!empty($part_track)) {
+        if (! empty($part_track)) {
             // 如果新设备和旧设备相同，返回错误
             if ($part_track->device_id == $device_id) {
                 return $this->response()
@@ -89,7 +88,7 @@ class PartTrackCreateUpdateForm extends Form implements LazyRenderable
     }
 
     /**
-     * 构造表单
+     * 构造表单.
      */
     public function form()
     {

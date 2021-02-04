@@ -1,20 +1,21 @@
 <?php
+
 return [
     'labels' => [
         'StaffRecord' => '组织',
         'Department' => '部门',
-        'records' => '雇员'
+        'records' => '雇员',
     ],
     'fields' => [
         'name' => '名称',
         'department' => [
-            'name' => '部门'
+            'name' => '部门',
         ],
         'gender' => '性别',
         'title' => '职位',
         'mobile' => '手机',
         'email' => '邮箱',
-        'mode' => '模式'
+        'mode' => '模式',
     ],
     'options' => [
     ],

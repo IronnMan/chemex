@@ -19,7 +19,6 @@ use Illuminate\Http\Request;
 
 class DeviceCategoryController extends AdminController
 {
-
     public function index(Content $content): Content
     {
         return $content
@@ -27,9 +26,9 @@ class DeviceCategoryController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.record'), route('device.records.index'));
-                $tab->add(Data::icon('category') . trans('main.category'), $this->treeView(), true);
-                $tab->addLink(Data::icon('track') . trans('main.track'), route('device.tracks.index'));
+                $tab->addLink(Data::icon('record').trans('main.record'), route('device.records.index'));
+                $tab->add(Data::icon('category').trans('main.category'), $this->treeView(), true);
+                $tab->addLink(Data::icon('track').trans('main.track'), route('device.tracks.index'));
                 $row->column(12, $tab);
             });
     }
@@ -46,6 +45,7 @@ class DeviceCategoryController extends AdminController
     public function selectList(Request $request)
     {
         $q = $request->get('q');
+
         return \App\Models\DeviceCategory::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
     }
 

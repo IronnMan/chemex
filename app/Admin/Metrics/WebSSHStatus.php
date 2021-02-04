@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Admin\Metrics;
-
 
 use App\Services\SSHService;
 use Dcat\Admin\Widgets\Metrics\Line;
@@ -55,7 +53,7 @@ HTML
     }
 
     /**
-     * 初始化卡片内容
+     * 初始化卡片内容.
      *
      * @return void
      */

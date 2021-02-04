@@ -1,8 +1,9 @@
 <?php
+
 return [
     'labels' => [
         'LDAP' => '平台配置',
-        'ldap' => 'LDAP'
+        'ldap' => 'LDAP',
     ],
     'fields' => [
         'ad_enabled' => '启用状态',
@@ -16,7 +17,7 @@ return [
         'ad_use_ssl' => '启用SSL',
         'ad_use_tls' => '启用TLS',
         'ad_login' => '启用域登录',
-        'ad_bind_administrator' => '域管理员的账户'
+        'ad_bind_administrator' => '域管理员的账户',
     ],
     'options' => [
     ],

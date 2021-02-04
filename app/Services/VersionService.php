@@ -1,15 +1,13 @@
 <?php
 
-
 namespace App\Services;
-
 
 use Illuminate\Support\Facades\Http;
 
 class VersionService
 {
     /**
-     * 从Gitee获取最新发行版本
+     * 从Gitee获取最新发行版本.
      * @return string|null
      */
     public static function getLatestVersionFromGitee(): ?string
@@ -32,7 +30,7 @@ class VersionService
 
     /**
      * 比较两个语义化版本的大小
-     * -1 表示有新版本，0 表示版本相同 ，1 表示本地版本比远程版本新
+     * -1 表示有新版本，0 表示版本相同 ，1 表示本地版本比远程版本新.
      * @param $old
      * @param $new
      * @param string $delimiter
@@ -42,14 +40,16 @@ class VersionService
     {
         $old = explode($delimiter, $old);
         $new = explode($delimiter, $new);
-        $res = (int)$old[0] <=> (int)$new[0];
+        $res = (int) $old[0] <=> (int) $new[0];
         if ($res == 0) {
-            $res = (int)$old[1] <=> (int)$new[1];
+            $res = (int) $old[1] <=> (int) $new[1];
             if ($res == 0) {
-                return (int)$old[2] <=> (int)$new[2];
+                return (int) $old[2] <=> (int) $new[2];
             }
+
             return $res;
         }
+
         return $res;
     }
 }

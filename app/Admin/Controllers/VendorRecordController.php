@@ -44,7 +44,7 @@ class VendorRecordController extends AdminController
             $grid->toolsWithOutline(false);
 
             $grid->tools([
-                new VendorRecordImportAction()
+                new VendorRecordImportAction(),
             ]);
 
             $grid->export();

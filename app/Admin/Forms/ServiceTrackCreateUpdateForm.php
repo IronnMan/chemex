@@ -17,13 +17,13 @@ class ServiceTrackCreateUpdateForm extends Form implements LazyRenderable
     use LazyWidget;
 
     /**
-     * 处理表单提交逻辑
+     * 处理表单提交逻辑.
      * @param array $input
      * @return JsonResponse
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('service.track.create_update')) {
+        if (! Admin::user()->can('service.track.create_update')) {
             return $this->response()
                 ->error('你没有权限执行此操作！')
                 ->refresh();
@@ -36,7 +36,7 @@ class ServiceTrackCreateUpdateForm extends Form implements LazyRenderable
         $device_id = $input['device_id'] ?? null;
 
         // 如果没有服务id或者设备id则返回错误
-        if (!$service_id || !$device_id) {
+        if (! $service_id || ! $device_id) {
             return $this->response()
                 ->error('参数错误');
         }
@@ -44,7 +44,7 @@ class ServiceTrackCreateUpdateForm extends Form implements LazyRenderable
         // 服务记录
         $service = ServiceRecord::where('id', $service_id)->first();
         // 如果没有找到这个服务记录则返回错误
-        if (!$service) {
+        if (! $service) {
             return $this->response()
                 ->error('服务程序不存在');
         }
@@ -52,7 +52,7 @@ class ServiceTrackCreateUpdateForm extends Form implements LazyRenderable
         // 设备记录
         $device = DeviceRecord::where('id', $device_id)->first();
         // 如果没有找到这个设备记录则返回错误
-        if (!$device) {
+        if (! $device) {
             return $this->response()
                 ->error('设备不存在');
         }
@@ -62,7 +62,7 @@ class ServiceTrackCreateUpdateForm extends Form implements LazyRenderable
             ->first();
 
         // 如果配件追踪非空，则删除旧追踪，为了留下流水记录
-        if (!empty($service_track)) {
+        if (! empty($service_track)) {
             // 如果新设备和旧设备相同，返回错误
             if ($service_track->device_id == $device_id) {
                 return $this->response()
@@ -84,7 +84,7 @@ class ServiceTrackCreateUpdateForm extends Form implements LazyRenderable
     }
 
     /**
-     * 构造表单
+     * 构造表单.
      */
     public function form()
     {

@@ -33,7 +33,7 @@ class IssueTrend extends Line
     {
         $year = date('Y', time());
         if ($request->get('option') == 'pre_year') {
-            $year = (int)$year - 1;
+            $year = (int) $year - 1;
         }
         $from = date('Y-m-d', mktime(0, 0, 0, 1, 1, $year));
         $to = date('Y-m-d', mktime(23, 59, 59, 12, 31, $year));
@@ -59,7 +59,7 @@ class IssueTrend extends Line
             array_push($data, $temp);
         }
 
-        $this->withContent('全年：' . $year_all);
+        $this->withContent('全年：'.$year_all);
         // 图表数据
         $this->withChart($data);
     }
@@ -92,6 +92,7 @@ HTML
     public function withChart(array $data): IssueTrend
     {
         $this->chartOptions['tooltip']['x']['show'] = true;
+
         return $this->chart([
             'series' => [
                 [
@@ -101,17 +102,17 @@ HTML
             ],
             'tooltip' => [
                 'x' => [
-                    'show' => true
-                ]
+                    'show' => true,
+                ],
             ],
             'colors' => [
-                '#52338F'
-            ]
+                '#52338F',
+            ],
         ]);
     }
 
     /**
-     * 初始化卡片内容
+     * 初始化卡片内容.
      *
      * @return void
      */
@@ -122,8 +123,7 @@ HTML
         $this->title($this->label);
         $this->dropdown([
             'current_year' => '今年度',
-            'pre_year' => '上年度'
+            'pre_year' => '上年度',
         ]);
     }
-
 }

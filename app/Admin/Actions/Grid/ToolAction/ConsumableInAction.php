@@ -11,7 +11,7 @@ class ConsumableInAction extends AbstractTool
     protected $title = '入库';
 
     /**
-     * 渲染模态框
+     * 渲染模态框.
      * @return Modal|string
      */
     public function render()

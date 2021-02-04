@@ -43,9 +43,9 @@ class SoftwareRecordController extends AdminController
             ->description($this->description()['index'] ?? trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category') . trans('main.category'), route('software.categories.index'));
-                $tab->addLink(Data::icon('track') . trans('main.track'), route('software.tracks.index'));
+                $tab->add(Data::icon('record').trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('category').trans('main.category'), route('software.categories.index'));
+                $tab->addLink(Data::icon('track').trans('main.track'), route('software.tracks.index'));
                 $row->column(12, $tab);
 
 //                $row->column(12, function (Column $column) {
@@ -69,7 +69,7 @@ class SoftwareRecordController extends AdminController
         return Grid::make(new SoftwareRecord(['category', 'vendor']), function (Grid $grid) {
             $grid->column('id');
             $grid->column('qrcode')->qrcode(function () {
-                return 'software:' . $this->id;
+                return 'software:'.$this->id;
             }, 200, 200);
             $grid->column('name');
             $grid->column('description');
@@ -99,7 +99,7 @@ class SoftwareRecordController extends AdminController
                 }
                 if (Admin::user()->can('software.track.list')) {
                     $tracks_route = route('software.tracks.index', ['_search_' => $this->id]);
-                    $actions->append("<a href='$tracks_route'>💿 " . trans('software_record_track_action') . "</a>");
+                    $actions->append("<a href='$tracks_route'>💿 ".trans('software_record_track_action').'</a>');
                 }
             });
 
@@ -123,11 +123,11 @@ class SoftwareRecordController extends AdminController
             $grid->disableBatchDelete();
 
             $grid->batchActions([
-                new SoftwareRecordBatchDeleteAction()
+                new SoftwareRecordBatchDeleteAction(),
             ]);
 
             $grid->tools([
-                new SoftwareRecordImportAction()
+                new SoftwareRecordImportAction(),
             ]);
 
             $grid->toolsWithOutline(false);
@@ -139,12 +139,13 @@ class SoftwareRecordController extends AdminController
     public function show($id, Content $content): Content
     {
         $history = SoftwareService::history($id);
+
         return $content
             ->title($this->title())
             ->description($this->description()['index'] ?? trans('admin.show'))
             ->body(function (Row $row) use ($id, $history) {
                 // 判断权限
-                if (!Admin::user()->can('software.track.list')) {
+                if (! Admin::user()->can('software.track.list')) {
                     $row->column(12, $this->detail($id));
                 } else {
                     $row->column(6, $this->detail($id));
@@ -156,7 +157,7 @@ class SoftwareRecordController extends AdminController
 
                             $grid->column('id');
                             $grid->column('device.name')->link(function () {
-                                if (!empty($this->device)) {
+                                if (! empty($this->device)) {
                                     return route('device.records.show', $this->device['id']);
                                 }
                             });
@@ -177,7 +178,7 @@ class SoftwareRecordController extends AdminController
                         });
                         $column->row(new Card(trans('main.software_record_track_title'), $grid));
                         $card = new Card(trans('main.software_record_history_title'), view('history')->with('data', $history));
-                        $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . route('export.software.history', $id) . '" target="_blank">' . trans('main.export_to_excel') . '</a>'));
+                        $column->row($card->tool('<a class="btn btn-primary btn-xs" href="'.route('export.software.history', $id).'" target="_blank">'.trans('main.export_to_excel').'</a>'));
                     });
                 }
             });
@@ -215,7 +216,7 @@ class SoftwareRecordController extends AdminController
     }
 
     /**
-     * 履历导出
+     * 履历导出.
      * @param $software_id
      * @return mixed
      */

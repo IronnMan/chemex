@@ -13,13 +13,13 @@ use Exception;
 class TodoRecordCreateForm extends Form
 {
     /**
-     * 处理表单提交逻辑
+     * 处理表单提交逻辑.
      * @param array $input
      * @return JsonResponse
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('todo.record.create')) {
+        if (! Admin::user()->can('todo.record.create')) {
             return $this->response()
                 ->error('你没有权限执行此操作！')
                 ->refresh();
@@ -52,14 +52,14 @@ class TodoRecordCreateForm extends Form
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error('失败：' . $e->getMessage());
+                ->error('失败：'.$e->getMessage());
         }
 
         return $return;
     }
 
     /**
-     * 构造表单
+     * 构造表单.
      */
     public function form()
     {

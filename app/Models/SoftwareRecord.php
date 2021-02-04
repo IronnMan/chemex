@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string version
  * @property int category_id
  * @property int vendor_id
- * @property double price
+ * @property float price
  * @property string expired
  * @property int purchased_channel_id
  * @property string asset_number
@@ -28,7 +28,7 @@ class SoftwareRecord extends Model
     protected $table = 'software_records';
 
     /**
-     * 软件记录有一个分类
+     * 软件记录有一个分类.
      * @return HasOne
      */
     public function category(): HasOne
@@ -37,7 +37,7 @@ class SoftwareRecord extends Model
     }
 
     /**
-     * 软件记录有一个厂商
+     * 软件记录有一个厂商.
      * @return HasOne
      */
     public function vendor(): HasOne
@@ -46,7 +46,7 @@ class SoftwareRecord extends Model
     }
 
     /**
-     * 软件记录有一个购入途径
+     * 软件记录有一个购入途径.
      * @return HasOne
      */
     public function channel(): HasOne

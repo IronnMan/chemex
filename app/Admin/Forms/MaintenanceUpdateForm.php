@@ -14,13 +14,13 @@ class MaintenanceUpdateForm extends Form implements LazyRenderable
     use LazyWidget;
 
     /**
-     * 处理表单提交逻辑
+     * 处理表单提交逻辑.
      * @param array $input
      * @return JsonResponse
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('maintenance.update')) {
+        if (! Admin::user()->can('maintenance.update')) {
             return $this->response()
                 ->error('你没有权限执行此操作！')
                 ->refresh();
@@ -39,7 +39,7 @@ class MaintenanceUpdateForm extends Form implements LazyRenderable
         $status = $input['status'] ?? null;
 
         // 如果没有物品、物品id、故障说明、故障时间则返回错误
-        if (!$id || !$ok_description || !$ok_time || !$status) {
+        if (! $id || ! $ok_description || ! $ok_time || ! $status) {
             return $this->response()
                 ->error('参数错误');
         }
@@ -47,7 +47,7 @@ class MaintenanceUpdateForm extends Form implements LazyRenderable
         $maintenance_record = MaintenanceRecord::where('id', $id)->first();
 
         // 如果没有找到这个物品记录则返回错误
-        if (!$maintenance_record) {
+        if (! $maintenance_record) {
             return $this->response()
                 ->error('物品不存在');
         }
@@ -64,7 +64,7 @@ class MaintenanceUpdateForm extends Form implements LazyRenderable
     }
 
     /**
-     * 构造表单
+     * 构造表单.
      */
     public function form()
     {
@@ -72,7 +72,7 @@ class MaintenanceUpdateForm extends Form implements LazyRenderable
         $this->datetime('ok_time', '故障时间')->required();
         $this->select('status', '处理结果')->options([
             1 => '已维修',
-            2 => '取消维修'
+            2 => '取消维修',
         ])->required();
     }
 }

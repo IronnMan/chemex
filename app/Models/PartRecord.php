@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @method static where(string $key, string $value, string $value = null)
  * @method static whereBetween(string $string, array $array)
- * @property double price
+ * @property float price
  * @property string purchased
  * @property string expired
  * @property string specification
@@ -31,7 +31,7 @@ class PartRecord extends Model
     protected $table = 'part_records';
 
     /**
-     * 配件记录有一个分类
+     * 配件记录有一个分类.
      * @return HasOne
      */
     public function category(): HasOne
@@ -40,7 +40,7 @@ class PartRecord extends Model
     }
 
     /**
-     * 配件记录有一个厂商
+     * 配件记录有一个厂商.
      * @return HasOne
      */
     public function vendor(): HasOne
@@ -49,7 +49,7 @@ class PartRecord extends Model
     }
 
     /**
-     * 配件记录有一个购入途径
+     * 配件记录有一个购入途径.
      * @return HasOne
      */
     public function channel(): HasOne
@@ -58,7 +58,7 @@ class PartRecord extends Model
     }
 
     /**
-     * 配件记录在远处有一个设备
+     * 配件记录在远处有一个设备.
      * @return HasManyThrough
      */
     public function device(): HasManyThrough
@@ -73,7 +73,7 @@ class PartRecord extends Model
     }
 
     /**
-     * 配件分类有一个折旧规则
+     * 配件分类有一个折旧规则.
      * @return HasOne
      */
     public function depreciation(): HasOne

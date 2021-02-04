@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\PartRecord;
 use App\Models\PartTrack;
@@ -10,13 +8,12 @@ use App\Support\Support;
 
 /**
  * 和配件记录相关的功能服务
- * Class PartRecordService
- * @package App\Services
+ * Class PartRecordService.
  */
 class PartService
 {
     /**
-     * 获取配件的履历清单
+     * 获取配件的履历清单.
      * @param $id
      * @return array
      */
@@ -29,7 +26,7 @@ class PartService
             'name' => '',
             'status' => '',
             'style' => '',
-            'datetime' => ''
+            'datetime' => '',
         ];
 
         $part_tracks = PartTrack::withTrashed()
@@ -49,13 +46,13 @@ class PartService
     }
 
     /**
-     * 配件删除
+     * 配件删除.
      * @param $part_id
      */
     public static function partDelete($part_id)
     {
         $part = PartRecord::where('id', $part_id)->first();
-        if (!empty($part)) {
+        if (! empty($part)) {
             $part_tracks = PartTrack::where('part_id', $part->id)
                 ->get();
 

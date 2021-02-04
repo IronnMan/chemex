@@ -26,9 +26,9 @@ class DeviceTrackController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.record'), route('device.records.index'));
-                $tab->addLink(Data::icon('category') . trans('main.category'), route('device.categories.index'));
-                $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
+                $tab->addLink(Data::icon('record').trans('main.record'), route('device.records.index'));
+                $tab->addLink(Data::icon('category').trans('main.category'), route('device.categories.index'));
+                $tab->add(Data::icon('track').trans('main.track'), $this->grid(), true);
                 $row->column(12, $tab);
             });
     }
@@ -41,7 +41,6 @@ class DeviceTrackController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new DeviceTrack(['device', 'staff']), function (Grid $grid) {
-
             $grid->column('id');
             $grid->column('device.name');
             $grid->column('staff.name');

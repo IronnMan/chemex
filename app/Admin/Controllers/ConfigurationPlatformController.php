@@ -12,7 +12,7 @@ use Dcat\Admin\Widgets\Tab;
 class ConfigurationPlatformController extends Controller
 {
     /**
-     * 页面
+     * 页面.
      * @param Content $content
      * @return Content
      */

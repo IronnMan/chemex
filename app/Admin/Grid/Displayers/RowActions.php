@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Admin\Grid\Displayers;
-
 
 use Dcat\Admin\Grid\Displayers\DropdownActions;
 use Illuminate\Contracts\View\Factory;
@@ -11,7 +9,7 @@ use Illuminate\View\View;
 class RowActions extends DropdownActions
 {
     /**
-     * 构造行操作菜单按钮
+     * 构造行操作菜单按钮.
      * @param array $callbacks
      * @return Factory|View
      */

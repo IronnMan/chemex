@@ -1,15 +1,13 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\AdminUser;
 
 class NotificationService
 {
     /**
-     * 盘点完成或者中止后删除对应的通知（软删除）
+     * 盘点完成或者中止后删除对应的通知（软删除）.
      * @param $check_id
      */
     public static function deleteNotificationWhenCheckFinishedOrCancelled($check_id)

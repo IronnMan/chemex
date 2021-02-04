@@ -43,8 +43,9 @@ class StaffDepartmentController extends AdminController
             $tree->branch(function ($branch) {
                 $display = "{$branch['name']}";
                 if ($branch['ad_tag'] === 1) {
-                    $display = "<span class='badge badge-primary mr-1'>AD</span>" . $display;
+                    $display = "<span class='badge badge-primary mr-1'>AD</span>".$display;
                 }
+
                 return $display;
             });
             $tree->tools(function (Tree\Tools $tools) {

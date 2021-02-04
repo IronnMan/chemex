@@ -34,7 +34,7 @@ use Illuminate\Http\Request;
 
 /**
  * @property int id
- * @property double price
+ * @property float price
  * @property string purchased
  * @property int depreciation_rule_id
  */
@@ -53,6 +53,7 @@ class DeviceRecordController extends AdminController
     {
         $name = Support::deviceIdToStaffName($id);
         $history = DeviceService::history($id);
+
         return $content
             ->title($this->title())
             ->description($this->description()['index'] ?? trans('admin.show'))
@@ -64,11 +65,11 @@ class DeviceRecordController extends AdminController
                     $column_a_width = 4;
                     $column_b_width = 4;
                     $column_c_width = 4;
-                } elseif (Admin::user()->can('device.related') && !Admin::user()->can('device.history')) {
+                } elseif (Admin::user()->can('device.related') && ! Admin::user()->can('device.history')) {
                     // 如果只有B
                     $column_a_width = 6;
                     $column_b_width = 6;
-                } elseif (!Admin::user()->can('device.related') && Admin::user()->can('device.history')) {
+                } elseif (! Admin::user()->can('device.related') && Admin::user()->can('device.history')) {
                     // 如果只有C
                     $column_a_width = 6;
                     $column_c_width = 6;
@@ -76,8 +77,8 @@ class DeviceRecordController extends AdminController
                     $column_a_width = 12;
                 }
                 $row->column($column_a_width, $this->detail($id));
-                $row->column($column_b_width, function (Column $column) use ($id, $name, $history) {
-                    $column->row(Card::make()->content(trans('main.device_record_current_staff') . '：' . $name));
+                $row->column($column_b_width, function (Column $column) use ($id, $name) {
+                    $column->row(Card::make()->content(trans('main.device_record_current_staff').'：'.$name));
                     if (Admin::user()->can('device.related')) {
                         $result = self::hasDeviceRelated($id);
                         if ($result['part']) {
@@ -93,7 +94,7 @@ class DeviceRecordController extends AdminController
                 });
                 if (Admin::user()->can('device.history')) {
                     $card = new Card(trans('main.history'), view('history')->with('data', $history));
-                    $row->column($column_c_width, $card->tool('<a class="btn btn-primary btn-xs" href="' . route('export.device.history', $id) . '" target="_blank">导出到 Excel</a>'));
+                    $row->column($column_c_width, $card->tool('<a class="btn btn-primary btn-xs" href="'.route('export.device.history', $id).'" target="_blank">导出到 Excel</a>'));
                 }
             });
     }
@@ -122,8 +123,9 @@ class DeviceRecordController extends AdminController
             $show->field('price');
             $show->field('expiration_left_days', admin_trans_label('Depreciation Price'))->as(function () {
                 $device_record = \App\Models\DeviceRecord::where('id', $this->id)->first();
-                if (!empty($device_record)) {
+                if (! empty($device_record)) {
                     $depreciation_rule_id = Support::getDepreciationRuleId($device_record);
+
                     return Support::depreciationPrice($this->price, $this->purchased, $depreciation_rule_id);
                 }
             });
@@ -157,11 +159,10 @@ class DeviceRecordController extends AdminController
             ->description($this->description()['index'] ?? trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category') . trans('main.category'), route('device.categories.index'));
-                $tab->addLink(Data::icon('track') . trans('main.track'), route('device.tracks.index'));
+                $tab->add(Data::icon('record').trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('category').trans('main.category'), route('device.categories.index'));
+                $tab->addLink(Data::icon('track').trans('main.track'), route('device.tracks.index'));
                 $row->column(12, $tab);
-
 
 //                $row->column(12, function (Column $column) {
 //                    $column->row(function (Row $row) {
@@ -182,10 +183,9 @@ class DeviceRecordController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new DeviceRecord(['category', 'vendor', 'staff', 'staff.department', 'depreciation']), function (Grid $grid) {
-
             $grid->column('id');
             $grid->column('qrcode')->qrcode(function () {
-                return 'device:' . $this->id;
+                return 'device:'.$this->id;
             }, 200, 200);
             $grid->column('asset_number');
             $grid->column('photo')->image('', 50, 50);
@@ -217,11 +217,11 @@ class DeviceRecordController extends AdminController
             $grid->disableDeleteButton();
 
             $grid->batchActions([
-                new DeviceRecordBatchDeleteAction()
+                new DeviceRecordBatchDeleteAction(),
             ]);
 
             $grid->tools([
-                new DeviceRecordImportAction()
+                new DeviceRecordImportAction(),
             ]);
 
             $grid->actions(function (RowActions $actions) {
@@ -271,7 +271,7 @@ class DeviceRecordController extends AdminController
     }
 
     /**
-     * 履历导出
+     * 履历导出.
      * @param $device_id
      * @return mixed
      */

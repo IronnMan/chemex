@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\SoftwareRecord;
 use App\Models\SoftwareTrack;
@@ -11,19 +9,18 @@ use Dcat\EasyExcel\Excel;
 
 /**
  * 和软件记录相关的功能服务
- * Class SoftwareRecordService
- * @package App\Services
+ * Class SoftwareRecordService.
  */
 class SoftwareService
 {
     /**
-     * 删除软件
+     * 删除软件.
      * @param $software_id
      */
     public static function deleteSoftware($software_id)
     {
         $software = SoftwareRecord::where('id', $software_id)->first();
-        if (!empty($software)) {
+        if (! empty($software)) {
             $software_tracks = SoftwareTrack::where('software_id', $software->id)
                 ->get();
 
@@ -36,7 +33,7 @@ class SoftwareService
     }
 
     /**
-     * 软件履历导出
+     * 软件履历导出.
      * @param $software_id
      * @return mixed
      */
@@ -49,11 +46,12 @@ class SoftwareService
             $name = $software->name;
         }
         $history = SoftwareService::history($software_id);
-        return Excel::export($history)->download($name . '履历清单.xlsx');
+
+        return Excel::export($history)->download($name.'履历清单.xlsx');
     }
 
     /**
-     * 获取软件的履历清单
+     * 获取软件的履历清单.
      * @param $id
      * @return array
      */
@@ -66,7 +64,7 @@ class SoftwareService
             'name' => '',
             'status' => '',
             'style' => '',
-            'datetime' => ''
+            'datetime' => '',
         ];
 
         $software_tracks = SoftwareTrack::withTrashed()

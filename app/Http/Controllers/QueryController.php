@@ -8,14 +8,13 @@ use Pour\Base\Uni;
 
 class QueryController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('jwt.auth');
     }
 
     /**
-     * 移动端扫码查看设备配件软件详情
+     * 移动端扫码查看设备配件软件详情.
      * @param $string
      * @return JsonResponse
      */
@@ -29,6 +28,7 @@ class QueryController extends Controller
         $item->vendor;
         $item->channel;
         $return = Uni::rr(200, '查询成功', $item);
+
         return response()->json($return);
     }
 }

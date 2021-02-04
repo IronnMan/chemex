@@ -18,7 +18,7 @@ class DepreciationRule extends Model
     protected $table = 'depreciation_rules';
 
     /**
-     * 对规则字段读取做数据类型转换，json字符串解析为数组
+     * 对规则字段读取做数据类型转换，json字符串解析为数组.
      * @param $rules
      * @return array
      */
@@ -28,7 +28,7 @@ class DepreciationRule extends Model
     }
 
     /**
-     * 对规则字段写入做数据类型转换，数组转为json字符串
+     * 对规则字段写入做数据类型转换，数组转为json字符串.
      * @param $rules
      */
     public function setRulesAttribute($rules)

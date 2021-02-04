@@ -14,12 +14,12 @@ class CheckRecordUpdateNoAction extends RowAction
     protected $title = '❌ 取消盘点任务';
 
     /**
-     * 处理动作逻辑
+     * 处理动作逻辑.
      * @return Response
      */
     public function handle(): Response
     {
-        if (!Admin::user()->can('check.record.update.no')) {
+        if (! Admin::user()->can('check.record.update.no')) {
             return $this->response()
                 ->error('你没有权限执行此操作！')
                 ->refresh();
@@ -43,13 +43,14 @@ class CheckRecordUpdateNoAction extends RowAction
 
         $check_record->status = 2;
         $check_record->save();
+
         return $this->response()
             ->success('盘点任务已经取消！')
             ->refresh();
     }
 
     /**
-     * 对话框
+     * 对话框.
      * @return string[]
      */
     public function confirm(): array

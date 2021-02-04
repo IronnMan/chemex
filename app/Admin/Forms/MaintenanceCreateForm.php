@@ -14,7 +14,7 @@ class MaintenanceCreateForm extends Form implements LazyRenderable
     use LazyWidget;
 
     /**
-     * 处理表单提交逻辑
+     * 处理表单提交逻辑.
      * @param array $input
      * @return JsonResponse
      */
@@ -33,7 +33,7 @@ class MaintenanceCreateForm extends Form implements LazyRenderable
         $ng_time = $input['ng_time'] ?? null;
 
         // 如果没有物品、物品id、故障说明、故障时间则返回错误
-        if (!$item || !$item_id || !$ng_description || !$ng_time) {
+        if (! $item || ! $item_id || ! $ng_description || ! $ng_time) {
             return $this->response()
                 ->error('参数错误');
         }
@@ -48,7 +48,7 @@ class MaintenanceCreateForm extends Form implements LazyRenderable
         }
 
         // 如果没有找到这个物品记录则返回错误
-        if (!$item_record) {
+        if (! $item_record) {
             return $this->response()
                 ->error('物品不存在');
         }
@@ -68,7 +68,7 @@ class MaintenanceCreateForm extends Form implements LazyRenderable
     }
 
     /**
-     * 构造表单
+     * 构造表单.
      */
     public function form()
     {

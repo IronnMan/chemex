@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Traits;
 
 use App\Admin\Repositories\PartTrack;
@@ -12,7 +11,7 @@ use Dcat\Admin\Grid;
 trait HasDeviceRelatedGrid
 {
     /**
-     * 查看某个设备下面的全部关联配件&软件&服务程序，并且返回它们的渲染集合
+     * 查看某个设备下面的全部关联配件&软件&服务程序，并且返回它们的渲染集合.
      * @param $device_id
      * @return array
      */
@@ -28,7 +27,7 @@ trait HasDeviceRelatedGrid
             $grid->column('id');
             $grid->column('part.category.name');
             $grid->column('part.name')->link(function () {
-                if (!empty($this->part)) {
+                if (! empty($this->part)) {
                     return route('part.records.show', $this->part['id']);
                 }
             });
@@ -52,7 +51,7 @@ trait HasDeviceRelatedGrid
             $grid->column('id');
             $grid->column('software.category.name');
             $grid->column('software.name')->link(function () {
-                if (!empty($this->software)) {
+                if (! empty($this->software)) {
                     return route('software.records.show', $this->software['id']);
                 }
             });
@@ -75,7 +74,7 @@ trait HasDeviceRelatedGrid
 
             $grid->column('id');
             $grid->column('service.name')->link(function () {
-                if (!empty($this->service)) {
+                if (! empty($this->service)) {
                     return route('service.records.show', $this->service['id']);
                 }
             });

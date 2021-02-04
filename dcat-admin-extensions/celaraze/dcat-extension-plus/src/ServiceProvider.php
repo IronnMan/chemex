@@ -17,21 +17,21 @@ class ServiceProvider extends BaseServiceProvider
     ];
     protected $middleware = [
         'before' => [
-            BeforeInjectDcatPlus::class
+            BeforeInjectDcatPlus::class,
         ],
         'middle' => [
-            MiddleInjectDcatPlus::class
+            MiddleInjectDcatPlus::class,
         ],
         'after' => [
-            AfterInjectDcatPlus::class
-        ]
+            AfterInjectDcatPlus::class,
+        ],
     ];
     protected $menu = [
         [
             'title' => 'Plus',
             'uri' => 'dcat-plus/site',
-            'icon' => 'feather icon-settings'
-        ]
+            'icon' => 'feather icon-settings',
+        ],
     ];
 
     public function register()
@@ -42,6 +42,5 @@ class ServiceProvider extends BaseServiceProvider
     public function init()
     {
         parent::init();
-
     }
 }

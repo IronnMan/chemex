@@ -14,7 +14,7 @@ class ServiceIssueForm extends Form implements LazyRenderable
     use LazyWidget;
 
     /**
-     * 处理表单提交逻辑
+     * 处理表单提交逻辑.
      * @param array $input
      * @return JsonResponse
      */
@@ -30,7 +30,7 @@ class ServiceIssueForm extends Form implements LazyRenderable
         $start = $input['start'] ?? null;
 
         // 如果没有服务id或者设备id则返回错误
-        if (!$service_id || !$issue || !$start) {
+        if (! $service_id || ! $issue || ! $start) {
             return $this->response()
                 ->error('参数错误');
         }
@@ -38,7 +38,7 @@ class ServiceIssueForm extends Form implements LazyRenderable
         // 服务记录
         $service = ServiceRecord::where('id', $service_id)->first();
         // 如果没有找到这个服务记录则返回错误
-        if (!$service) {
+        if (! $service) {
             return $this->response()
                 ->error('服务程序不存在');
         }
@@ -56,7 +56,7 @@ class ServiceIssueForm extends Form implements LazyRenderable
     }
 
     /**
-     * 构造表单
+     * 构造表单.
      */
     public function form()
     {

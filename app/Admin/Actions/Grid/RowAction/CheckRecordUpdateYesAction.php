@@ -20,12 +20,12 @@ class CheckRecordUpdateYesAction extends RowAction
     }
 
     /**
-     * 处理动作逻辑
+     * 处理动作逻辑.
      * @return Response
      */
     public function handle(): Response
     {
-        if (!Admin::user()->can('check.record.update.yes')) {
+        if (! Admin::user()->can('check.record.update.yes')) {
             return $this->response()
                 ->error('你没有权限执行此操作！')
                 ->refresh();
@@ -53,12 +53,12 @@ class CheckRecordUpdateYesAction extends RowAction
                 ->refresh();
         } else {
             return $this->response()
-                ->error('失败，至少还有一项未完成的盘点追踪：' . $check_track->id);
+                ->error('失败，至少还有一项未完成的盘点追踪：'.$check_track->id);
         }
     }
 
     /**
-     * 对话框
+     * 对话框.
      * @return string[]
      */
     public function confirm(): array

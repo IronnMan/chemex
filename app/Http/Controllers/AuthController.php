@@ -12,14 +12,14 @@ class AuthController extends Controller
     }
 
     /**
-     * 登录
+     * 登录.
      * @return JsonResponse
      */
     public function login(): JsonResponse
     {
         $credentials = request(['username', 'password']);
 
-        if (!$token = auth('api')->attempt($credentials)) {
+        if (! $token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => '未授权的操作'], 401);
         }
 
@@ -27,7 +27,7 @@ class AuthController extends Controller
     }
 
     /**
-     * 返回Token
+     * 返回Token.
      * @param string $token
      * @return JsonResponse
      */
@@ -40,7 +40,7 @@ class AuthController extends Controller
     }
 
     /**
-     * 获取登录的用户信息
+     * 获取登录的用户信息.
      * @return JsonResponse
      */
     public function me(): JsonResponse

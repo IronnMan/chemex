@@ -29,7 +29,7 @@ class StaffDepartment extends Model
     protected $titleColumn = 'name';
 
     /**
-     * 组织部门有一个父组织部门
+     * 组织部门有一个父组织部门.
      * @return HasOne
      */
     public function parent(): HasOne
@@ -48,6 +48,7 @@ class StaffDepartment extends Model
         if (empty($parent_id)) {
             return 0;
         }
+
         return $parent_id;
     }
 }

@@ -37,7 +37,7 @@ class PurchasedChannelController extends AdminController
             $grid->toolsWithOutline(false);
 
             $grid->tools([
-                new PurchasedChannelImportAction()
+                new PurchasedChannelImportAction(),
             ]);
 
             $grid->quickSearch('id', 'name', 'description')

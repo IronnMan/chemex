@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Admin\Metrics;
-
 
 use App\Models\ServiceIssue;
 use App\Models\ServiceRecord;
@@ -30,7 +28,7 @@ class ServiceIssueCounts extends Card
             $service_issue = ServiceIssue::where('service_id', $service->id)
                 ->where('status', 1)
                 ->first();
-            if (!empty($service_issue)) {
+            if (! empty($service_issue)) {
                 $counts++;
             }
         }

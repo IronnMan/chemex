@@ -20,7 +20,7 @@ class DeviceTrack extends Model
     protected $table = 'device_tracks';
 
     /**
-     * 设备追踪有一个设备记录
+     * 设备追踪有一个设备记录.
      * @return HasOne
      */
     public function device(): HasOne
@@ -29,7 +29,7 @@ class DeviceTrack extends Model
     }
 
     /**
-     * 设备追踪有一个使用者（雇员）
+     * 设备追踪有一个使用者（雇员）.
      * @return HasOne
      */
     public function staff(): HasOne

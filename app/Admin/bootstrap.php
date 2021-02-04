@@ -16,7 +16,6 @@
  * Or require js and css assets:
  * Admin::css('/packages/prettydocs/css/styles.css');
  * Admin::js('/packages/prettydocs/js/main.js');
- *
  */
 
 use App\Models\AdminUser;
@@ -28,7 +27,7 @@ ConfigService::init();
 // 获取当前用户的通知
 $user = AdminUser::where('id', auth('admin')->id())->first();
 $notifications = [];
-if (!empty($user)) {
+if (! empty($user)) {
     $notifications = $user->unreadNotifications;
     $notifications = json_decode($notifications, true);
 }

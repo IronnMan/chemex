@@ -11,7 +11,7 @@ class ConsumableOutAction extends AbstractTool
     protected $title = '领用';
 
     /**
-     * 渲染模态框
+     * 渲染模态框.
      * @return Modal|string
      */
     public function render()

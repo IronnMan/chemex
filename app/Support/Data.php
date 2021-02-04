@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Support;
-
 
 use Dcat\Admin\Admin;
 use Dcat\Admin\Widgets\Alert;
@@ -10,7 +8,7 @@ use Dcat\Admin\Widgets\Alert;
 class Data
 {
     /**
-     * 发行方式
+     * 发行方式.
      * @return string[]
      */
     public static function distribution(): array
@@ -19,12 +17,12 @@ class Data
             'u' => '未知',
             'o' => '开源',
             'f' => '免费',
-            'b' => '商业授权'
+            'b' => '商业授权',
         ];
     }
 
     /**
-     * 性别
+     * 性别.
      * @return string[]
      */
     public static function genders(): array
@@ -32,12 +30,12 @@ class Data
         return [
             '无' => '无',
             '男' => '男',
-            '女' => '女'
+            '女' => '女',
         ];
     }
 
     /**
-     * 物件
+     * 物件.
      * @return string[]
      */
     public static function items(): array
@@ -45,7 +43,7 @@ class Data
         return [
             'device' => '设备',
             'part' => '配件',
-            'software' => '软件'
+            'software' => '软件',
         ];
     }
 
@@ -58,7 +56,7 @@ class Data
         return [
             0 => '进行',
             1 => '完成',
-            2 => '中止'
+            2 => '中止',
         ];
     }
 
@@ -71,7 +69,7 @@ class Data
         return [
             0 => '等待处理',
             1 => '处理完毕',
-            2 => '取消'
+            2 => '取消',
         ];
     }
 
@@ -84,7 +82,7 @@ class Data
         return [
             0 => '未盘点',
             1 => '盘盈',
-            2 => '盘亏'
+            2 => '盘亏',
         ];
     }
 
@@ -98,12 +96,12 @@ class Data
             0 => '正常',
             1 => '故障',
             2 => '恢复',
-            3 => '暂停'
+            3 => '暂停',
         ];
     }
 
     /**
-     * 软件标签
+     * 软件标签.
      * @return array
      */
     public static function softwareTags(): array
@@ -113,7 +111,7 @@ class Data
                 'windows',
                 'win10',
                 'win8',
-                'win7'
+                'win7',
             ],
             'macos' => [
                 'mac',
@@ -130,7 +128,7 @@ class Data
                 'sierra',
                 'mojave',
                 'catalina',
-                'bigsur'
+                'bigsur',
             ],
             'linux' => [
                 'linux',
@@ -139,7 +137,7 @@ class Data
                 'kali',
                 'debian',
                 'arch',
-                'deepin'
+                'deepin',
             ],
             'android' => [
                 'cupcake',
@@ -155,16 +153,16 @@ class Data
                 'marshmallow',
                 'nougat',
                 'oreo',
-                'pie'
+                'pie',
             ],
             'ios' => [
-                'ios'
-            ]
+                'ios',
+            ],
         ];
     }
 
     /**
-     * 返回不支持操作的错误信息 warning
+     * 返回不支持操作的错误信息 warning.
      * @return Alert
      */
     public static function unsupportedOperationWarning(): Alert
@@ -172,6 +170,7 @@ class Data
         $alert = Alert::make('此功能不允许通过此操作实现。', '未提供的操作');
         $alert->warning();
         $alert->icon('feather icon-alert-triangle');
+
         return $alert;
     }
 
@@ -188,12 +187,12 @@ class Data
             'one month' => '一月内过期',
             'normal' => '正常',
             'none' => '无效的设备',
-            'default' => '错误'
+            'default' => '错误',
         ];
     }
 
     /**
-     * 保固状态颜色
+     * 保固状态颜色.
      * @return array
      */
     public static function expiredStatusColors(): array
@@ -205,12 +204,12 @@ class Data
             'one month' => 'warning',
             'normal' => 'success',
             'none' => 'primary',
-            'default' => Admin::color()->gray()
+            'default' => Admin::color()->gray(),
         ];
     }
 
     /**
-     * 返回时间尺度
+     * 返回时间尺度.
      * @return string[]
      */
     public static function timeScales(): array
@@ -218,12 +217,12 @@ class Data
         return [
             'day' => '天',
             'month' => '月',
-            'year' => '年'
+            'year' => '年',
         ];
     }
 
     /**
-     * 返回emoji
+     * 返回emoji.
      * @return string[]
      */
     public static function emoji(): array
@@ -231,12 +230,12 @@ class Data
         return [
             'happy' => '😀 愉快',
             'normal' => '😐 一般',
-            'sad' => '😟 悲伤'
+            'sad' => '😟 悲伤',
         ];
     }
 
     /**
-     * 返回控制器图标
+     * 返回控制器图标.
      * @param $string
      * @return string
      */
@@ -246,13 +245,14 @@ class Data
             'record' => '<i class="fa feather icon-list"></i> ',
             'category' => '<i class="fa feather icon-pie-chart"></i> ',
             'track' => '<i class="fa feather icon-archive"></i> ',
-            'issue' => '<i class="fa feather icon-alert-triangle"></i> '
+            'issue' => '<i class="fa feather icon-alert-triangle"></i> ',
         ];
+
         return $array[$string];
     }
 
     /**
-     * 返回优先级的键值对
+     * 返回优先级的键值对.
      * @return string[]
      */
     public static function priority(): array
@@ -260,8 +260,7 @@ class Data
         return [
             'high' => '高',
             'normal' => '普通',
-            'low' => '低'
+            'low' => '低',
         ];
     }
-
 }

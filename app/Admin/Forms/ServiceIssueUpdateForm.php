@@ -14,13 +14,13 @@ class ServiceIssueUpdateForm extends Form implements LazyRenderable
     use LazyWidget;
 
     /**
-     * 处理表单提交逻辑
+     * 处理表单提交逻辑.
      * @param array $input
      * @return JsonResponse
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('service.issue.update')) {
+        if (! Admin::user()->can('service.issue.update')) {
             return $this->response()
                 ->error('你没有权限执行此操作！')
                 ->refresh();
@@ -33,7 +33,7 @@ class ServiceIssueUpdateForm extends Form implements LazyRenderable
         $description = $input['description'] ?? null;
 
         // 如果没有盘点id返回错误
-        if (!$issue_id) {
+        if (! $issue_id) {
             return $this->response()
                 ->error('参数错误');
         }
@@ -55,7 +55,7 @@ class ServiceIssueUpdateForm extends Form implements LazyRenderable
     }
 
     /**
-     * 构造表单
+     * 构造表单.
      */
     public function form()
     {

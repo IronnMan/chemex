@@ -8,6 +8,5 @@ class Setting extends Form
 {
     public function form()
     {
-
     }
 }

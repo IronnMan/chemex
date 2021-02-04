@@ -24,7 +24,7 @@ class ConsumableCategory extends Model
     protected $titleColumn = 'name';
 
     /**
-     * 设备分类有一个父级分类
+     * 设备分类有一个父级分类.
      * @return HasOne
      */
     public function parent(): HasOne
@@ -43,6 +43,7 @@ class ConsumableCategory extends Model
         if (empty($parent_id)) {
             return 0;
         }
+
         return $parent_id;
     }
 }

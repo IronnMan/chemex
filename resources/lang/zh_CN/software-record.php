@@ -1,22 +1,23 @@
 <?php
+
 return [
     'labels' => [
         'SoftwareRecord' => '软件',
-        'records' => '软件'
+        'records' => '软件',
     ],
     'fields' => [
         'qrcode' => '二维码',
         'name' => '名称',
         'description' => '描述',
         'category' => [
-            'name' => '软件分类'
+            'name' => '软件分类',
         ],
         'version' => '版本',
         'vendor' => [
-            'name' => '厂商'
+            'name' => '厂商',
         ],
         'channel' => [
-            'name' => '购入途径'
+            'name' => '购入途径',
         ],
         'price' => '价格',
         'purchased' => '购入时间',
@@ -28,8 +29,8 @@ return [
         'device' => [
             'name' => '设备',
             'staff' => [
-                'name' => '雇员'
-            ]
+                'name' => '雇员',
+            ],
         ],
         'asset_number' => '资产编号',
         'location' => '位置',

@@ -1,4 +1,5 @@
 <?php
+
 return [
     'labels' => [
         'DeviceRecord' => '设备',
@@ -8,20 +9,20 @@ return [
         'Expiration Left Days' => '保固剩余天数',
         'records' => '设备',
         'Depreciation Rule Id' => '折旧规则',
-        'Depreciation Price' => '折旧价格'
+        'Depreciation Price' => '折旧价格',
     ],
     'fields' => [
         'qrcode' => '二维码',
         'name' => '名称',
         'description' => '描述',
         'category' => [
-            'name' => '分类'
+            'name' => '分类',
         ],
         'vendor' => [
-            'name' => '厂商'
+            'name' => '厂商',
         ],
         'channel' => [
-            'name' => '购入途径'
+            'name' => '购入途径',
         ],
         'sn' => '序列号',
         'mac' => 'MAC',
@@ -30,7 +31,7 @@ return [
         'staff' => [
             'name' => '雇员',
             'department' => [
-                'name' => '部门'
+                'name' => '部门',
             ],
             'department_id' => '部门',
         ],
@@ -41,37 +42,37 @@ return [
         'admin_password' => '管理员密码',
         'part' => [
             'category' => [
-                'name' => '分类'
+                'name' => '分类',
             ],
             'name' => '名称',
             'specification' => '规格',
             'sn' => '序列号',
             'vendor' => [
-                'name' => '厂商'
-            ]
+                'name' => '厂商',
+            ],
         ],
         'software' => [
             'category' => [
-                'name' => '分类'
+                'name' => '分类',
             ],
             'name' => '名称',
             'version' => '版本',
             'distribution' => '发行方式',
             'vendor' => [
-                'name' => '厂商'
-            ]
+                'name' => '厂商',
+            ],
         ],
         'service' => [
-            'name' => '名称'
+            'name' => '名称',
         ],
         'depreciation' => [
-            'name' => '折旧规则'
+            'name' => '折旧规则',
         ],
         'asset_number' => '资产编号',
         'location' => '位置',
         'category_id' => '分类',
         'vendor_id' => '厂商',
-        'depreciation_id' => '折旧规则'
+        'depreciation_id' => '折旧规则',
     ],
     'options' => [
     ],

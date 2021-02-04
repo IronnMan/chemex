@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Celaraze\DcatPlus\Extensions\Form;
-
 
 use Celaraze\DcatPlus\Support;
 use Dcat\Admin\Form;
@@ -35,7 +33,7 @@ class SelectCreate extends Select
             'groups' => $this->groups,
             'configs' => $this->config,
             'cascadeScript' => $this->getCascadeScript(),
-            'createDialog' => $this->build()
+            'createDialog' => $this->build(),
         ]);
 
         $this->attribute('data-value', implode(',', Helper::array($this->value())));
@@ -59,6 +57,7 @@ class SelectCreate extends Select
     public function url($url): SelectCreate
     {
         $this->url = $url;
+
         return $this;
     }
 }

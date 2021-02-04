@@ -28,7 +28,7 @@ class DeviceCategory extends Model
     protected $titleColumn = 'name';
 
     /**
-     * 设备分类有一个父级分类
+     * 设备分类有一个父级分类.
      * @return HasOne
      */
     public function parent(): HasOne
@@ -37,7 +37,7 @@ class DeviceCategory extends Model
     }
 
     /**
-     * 设备分类有一个折旧规则
+     * 设备分类有一个折旧规则.
      * @return HasOne
      */
     public function depreciation(): HasOne
@@ -56,6 +56,7 @@ class DeviceCategory extends Model
         if (empty($parent_id)) {
             return 0;
         }
+
         return $parent_id;
     }
 }

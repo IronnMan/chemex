@@ -12,5 +12,4 @@ class ChartRecord extends Model
     use SoftDeletes;
 
     protected $table = 'chart_records';
-
 }

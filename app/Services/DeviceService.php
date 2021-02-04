@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
@@ -13,13 +11,12 @@ use App\Support\Support;
 
 /**
  * 和设备记录相关的功能服务
- * Class DeviceService
- * @package App\Services
+ * Class DeviceService.
  */
 class DeviceService
 {
     /**
-     * 获取设备的软配件内容
+     * 获取设备的软配件内容.
      * @param $id
      * @return mixed
      */
@@ -48,7 +45,7 @@ class DeviceService
     }
 
     /**
-     * 获取设备的履历清单
+     * 获取设备的履历清单.
      * @param $id
      * @return array
      */
@@ -61,7 +58,7 @@ class DeviceService
             'name' => '',
             'status' => '',
             'style' => '',
-            'datetime' => ''
+            'datetime' => '',
         ];
 
         // 处理设备使用者变动履历
@@ -71,7 +68,7 @@ class DeviceService
         foreach ($device_tracks as $device_track) {
             $single['type'] = '用户';
             $device = $device_track->staff()->withTrashed()->first();
-            $single['name'] = $device->name . ' - ' . $device_track->staff()
+            $single['name'] = $device->name.' - '.$device_track->staff()
                     ->withTrashed()
                     ->first()
                     ->department()
@@ -88,7 +85,7 @@ class DeviceService
         foreach ($part_tracks as $part_track) {
             $single['type'] = '配件';
             $part = $part_track->part()->withTrashed()->first();
-            $single['name'] = $part->name . ' - ' . $part->specification;
+            $single['name'] = $part->name.' - '.$part->specification;
             $data = Support::itemTrack($single, $part_track, $data);
         }
 
@@ -99,7 +96,7 @@ class DeviceService
         foreach ($software_tracks as $software_track) {
             $single['type'] = '软件';
             $software = $software_track->software()->withTrashed()->first();
-            $single['name'] = $software->name . ' ' . $software->version;
+            $single['name'] = $software->name.' '.$software->version;
             $data = Support::itemTrack($single, $software_track, $data);
         }
 
@@ -110,13 +107,13 @@ class DeviceService
     }
 
     /**
-     * 删除设备
+     * 删除设备.
      * @param $device_id
      */
     public static function deviceDelete($device_id)
     {
         $device_record = DeviceRecord::where('id', $device_id)->first();
-        if (!empty($device_record)) {
+        if (! empty($device_record)) {
             // 软删除设备归属记录
             $device_tracks = DeviceTrack::where('device_id', $device_id)->get();
             foreach ($device_tracks as $device_track) {

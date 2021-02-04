@@ -16,6 +16,7 @@ class ConfigurationPlatformForm extends Form
     public function handle(array $input)
     {
         admin_setting($input);
+
         return $this
             ->response()
             ->success('平台配置更新成功！')

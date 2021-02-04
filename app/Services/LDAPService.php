@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use Adldap\Laravel\Facades\Adldap;
 use App\Models\StaffDepartment;
@@ -12,7 +10,7 @@ use Exception;
 class LDAPService
 {
     /**
-     * 获取AD中全部的OU，并且带上层级
+     * 获取AD中全部的OU，并且带上层级.
      * @param $mode
      * @return bool|string
      */
@@ -66,6 +64,7 @@ class LDAPService
                 }
                 $department->save();
             }
+
             return true;
         } catch (Exception $exception) {
             return $exception->getMessage();
@@ -73,7 +72,7 @@ class LDAPService
     }
 
     /**
-     * 获取AD中全部的User，并且自动写入部门
+     * 获取AD中全部的User，并且自动写入部门.
      * @param $mode
      * @return string
      */
@@ -99,7 +98,7 @@ class LDAPService
                 if (strpos($user_dn_up, 'OU=') !== false) {
                     $user_dn_department = explode('=', $user_dn_up)[1];
                     $department = StaffDepartment::where('name', $user_dn_department)->first();
-                    if (!empty($department)) {
+                    if (! empty($department)) {
                         $department_id = $department->id;
                     }
                 }

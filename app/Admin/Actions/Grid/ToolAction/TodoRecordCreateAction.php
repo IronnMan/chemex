@@ -11,7 +11,7 @@ class TodoRecordCreateAction extends AbstractTool
     protected $title = '创建待办';
 
     /**
-     * 渲染模态框
+     * 渲染模态框.
      * @return Modal|string
      */
     public function render()

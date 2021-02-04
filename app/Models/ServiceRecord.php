@@ -18,7 +18,7 @@ class ServiceRecord extends Model
     protected $table = 'service_records';
 
     /**
-     * 服务程序在远处有一个设备记录
+     * 服务程序在远处有一个设备记录.
      * @return HasOneThrough
      */
     public function device(): HasOneThrough

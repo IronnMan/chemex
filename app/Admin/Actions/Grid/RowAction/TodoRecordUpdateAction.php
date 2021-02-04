@@ -12,12 +12,12 @@ class TodoRecordUpdateAction extends RowAction
     protected $title = '👨‍💼 完成任务';
 
     /**
-     * 渲染模态框
+     * 渲染模态框.
      * @return Modal|string
      */
     public function render()
     {
-        if (!Admin::user()->can('todo.record.update')) {
+        if (! Admin::user()->can('todo.record.update')) {
             return '你没有权限执行此操作！';
         }
 

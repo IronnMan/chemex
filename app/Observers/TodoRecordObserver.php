@@ -17,7 +17,7 @@ class TodoRecordObserver
     public function created(TodoRecord $todoRecord)
     {
         $admin_user = AdminUser::where('id', $todoRecord->user_id)->first();
-        if (!empty($admin_user)) {
+        if (! empty($admin_user)) {
             $admin_user->notify(new NewTodoRecord($todoRecord));
         }
     }

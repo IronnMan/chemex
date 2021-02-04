@@ -25,7 +25,7 @@ class SoftwareCategory extends Model
     protected $titleColumn = 'name';
 
     /**
-     * 软件分类有一个父级分类
+     * 软件分类有一个父级分类.
      * @return HasOne
      */
     public function parent(): HasOne
@@ -44,6 +44,7 @@ class SoftwareCategory extends Model
         if (empty($parent_id)) {
             return 0;
         }
+
         return $parent_id;
     }
 }

@@ -28,7 +28,6 @@ class MaintenanceRecordController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new MaintenanceRecord(), function (Grid $grid) {
-
             $grid->model()->orderBy('status', 'ASC');
 
             $grid->column('id');
@@ -65,7 +64,7 @@ class MaintenanceRecordController extends AdminController
                 $selector->select('status', [
                     0 => trans('main.maintenance_record_status_waiting'),
                     1 => trans('main.maintenance_record_status_done'),
-                    2 => trans('main.maintenance_record_status_cancelled')
+                    2 => trans('main.maintenance_record_status_cancelled'),
                 ]);
             });
 

@@ -11,7 +11,7 @@ class MaintenanceUpdateAction extends RowAction
     protected $title = '🧱 修复故障';
 
     /**
-     * 渲染模态框
+     * 渲染模态框.
      * @return Modal|string
      */
     public function render()

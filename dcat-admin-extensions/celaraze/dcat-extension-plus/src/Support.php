@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Celaraze\DcatPlus;
-
 
 use Celaraze\DcatPlus\Extensions\Form\SelectCreate;
 use Dcat\Admin\Admin;
@@ -12,7 +10,7 @@ use Dcat\Admin\Support\Helper;
 class Support
 {
     /**
-     * 快速翻译（为了缩短代码量）
+     * 快速翻译（为了缩短代码量）.
      * @param $string
      * @return array|string|null
      */
@@ -22,32 +20,32 @@ class Support
     }
 
     /**
-     * 初始化配置注入
+     * 初始化配置注入.
      */
     public function initConfig()
     {
         /**
-         * 处理站点LOGO自定义
+         * 处理站点LOGO自定义.
          */
         if (empty(admin_setting('site_logo'))) {
             $logo = admin_setting('site_logo_text');
         } else {
-            $logo = config('app.url') . '/uploads/' . admin_setting('site_logo');
+            $logo = config('app.url').'/uploads/'.admin_setting('site_logo');
             $logo = "<img src='$logo'>";
         }
 
         /**
-         * 处理站点LOGO-MINI自定义
+         * 处理站点LOGO-MINI自定义.
          */
         if (empty(admin_setting('site_logo_mini'))) {
             $logo_mini = admin_setting('site_logo_text');
         } else {
-            $logo_mini = config('app.url') . '/uploads/' . admin_setting('site_logo_mini');
+            $logo_mini = config('app.url').'/uploads/'.admin_setting('site_logo_mini');
             $logo_mini = "<img src='$logo_mini'>";
         }
 
         /**
-         * 处理站点名称
+         * 处理站点名称.
          */
         if (empty(admin_setting('site_url'))) {
             $site_url = 'http://localhost';
@@ -73,7 +71,7 @@ class Support
         }
 
         /**
-         * 复写admin站点配置
+         * 复写admin站点配置.
          */
         config([
             'app.url' => $site_url,
@@ -85,12 +83,12 @@ class Support
             'admin.logo' => $logo,
             'admin.logo-mini' => $logo_mini,
             'admin.layout.color' => $theme_color,
-            'admin.layout.body_class' => $sidebar_style
+            'admin.layout.body_class' => $sidebar_style,
         ]);
     }
 
     /**
-     * 复写菜单栏
+     * 复写菜单栏.
      */
     public function injectSidebar()
     {
@@ -111,7 +109,7 @@ class Support
     }
 
     /**
-     * 返回菜单视图路径
+     * 返回菜单视图路径.
      * @return string
      */
     public static function menu_view(): string
@@ -130,7 +128,7 @@ class Support
     {
         if (admin_setting('footer_remove')) {
             Admin::style(
-                <<<CSS
+                <<<'CSS'
 .main-footer {
     display: none;
 }
@@ -143,7 +141,7 @@ CSS
     {
         if (admin_setting('header_blocks')) {
             Admin::style(
-                <<<CSS
+                <<<'CSS'
 .navbar {
     margin: 0 35px 0 35px;
     height: 70px;

@@ -12,12 +12,12 @@ class CheckTrackUpdateAction extends RowAction
     protected $title = '👨‍💼 处理盘点';
 
     /**
-     * 渲染模态框
+     * 渲染模态框.
      * @return Modal|string
      */
     public function render()
     {
-        if (!Admin::user()->can('check.track.update')) {
+        if (! Admin::user()->can('check.track.update')) {
             return '你没有权限执行此操作！';
         }
 

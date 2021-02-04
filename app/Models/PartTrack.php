@@ -20,7 +20,7 @@ class PartTrack extends Model
     protected $table = 'part_tracks';
 
     /**
-     * 配件追踪有一个配件记录
+     * 配件追踪有一个配件记录.
      * @return HasOne
      */
     public function part(): HasOne
@@ -29,7 +29,7 @@ class PartTrack extends Model
     }
 
     /**
-     * 配件追踪有一个设备记录
+     * 配件追踪有一个设备记录.
      * @return HasOne
      */
     public function device(): HasOne

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Admin\Metrics;
-
 
 use App\Models\CheckRecord;
 use App\Models\CheckTrack;
@@ -29,11 +27,11 @@ class CheckDevicePercentage extends Card
 
         $device_records_all = DeviceRecord::count();
         $check_record = CheckRecord::where('check_item', 'device')->where('status', 0)->first();
-        if (!empty($check_record)) {
+        if (! empty($check_record)) {
             $check_tracks_counts = CheckTrack::where('check_id', $check_record->id)
                 ->where('status', '!=', 0)
                 ->count();
-            $done_counts = '盘点进度：' . $check_tracks_counts . ' / ' . $device_records_all;
+            $done_counts = '盘点进度：'.$check_tracks_counts.' / '.$device_records_all;
             try {
                 $percentage = round($check_tracks_counts / $device_records_all * 100, 2);
             } catch (Exception $exception) {

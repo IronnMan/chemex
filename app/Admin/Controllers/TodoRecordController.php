@@ -31,7 +31,6 @@ class TodoRecordController extends AdminController
             ->body(function (Row $row) {
                 $row->column(12, function (Column $column) {
                     $column->row(function (Row $row) {
-
                     });
                 });
                 $row->column(12, $this->grid());
@@ -62,7 +61,7 @@ class TodoRecordController extends AdminController
             });
 
             $grid->tools([
-                new TodoRecordCreateAction()
+                new TodoRecordCreateAction(),
             ]);
 
             $grid->disableCreateButton();

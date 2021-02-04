@@ -11,7 +11,7 @@ class DeviceSSHInfoAction extends RowAction
     protected $title = '✍ 编辑SSH连接信息';
 
     /**
-     * 渲染模态框
+     * 渲染模态框.
      * @return Modal|string
      */
     public function render()
@@ -21,7 +21,7 @@ class DeviceSSHInfoAction extends RowAction
 
         return Modal::make()
             ->lg()
-            ->title('为 ' . $this->getRow()->name . ' 补充SSH连接信息')
+            ->title('为 '.$this->getRow()->name.' 补充SSH连接信息')
             ->body($form)
             ->button($this->title);
     }

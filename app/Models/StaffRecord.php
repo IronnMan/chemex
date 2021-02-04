@@ -28,7 +28,7 @@ class StaffRecord extends Model
     protected $table = 'staff_records';
 
     /**
-     * 雇员记录有一个组织部门记录
+     * 雇员记录有一个组织部门记录.
      * @return HasOne
      */
     public function department(): HasOne

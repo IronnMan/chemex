@@ -35,7 +35,7 @@ class AdminUser extends User implements JWTSubject
     }
 
     /**
-     * 获取JWT验证器
+     * 获取JWT验证器.
      */
     public function getJWTIdentifier()
     {
@@ -43,7 +43,7 @@ class AdminUser extends User implements JWTSubject
     }
 
     /**
-     * 构造JWT自定义的声明key-values
+     * 构造JWT自定义的声明key-values.
      * @return array
      */
     public function getJWTCustomClaims(): array

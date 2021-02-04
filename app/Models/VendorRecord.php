@@ -21,7 +21,7 @@ class VendorRecord extends Model
     protected $table = 'vendor_records';
 
     /**
-     * 对联系人字段读取做数据类型转换，json字符串解析为数组
+     * 对联系人字段读取做数据类型转换，json字符串解析为数组.
      * @param $contacts
      * @return array
      */
@@ -31,7 +31,7 @@ class VendorRecord extends Model
     }
 
     /**
-     * 对联系人字段写入做数据类型转换，数组转为json字符串
+     * 对联系人字段写入做数据类型转换，数组转为json字符串.
      * @param $contacts
      */
     public function setContactsAttribute($contacts)

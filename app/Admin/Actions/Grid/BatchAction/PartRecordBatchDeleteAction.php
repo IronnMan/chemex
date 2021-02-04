@@ -22,7 +22,7 @@ class PartRecordBatchDeleteAction extends BatchAction
     // 处理请求
     public function handle(): Response
     {
-        if (!Admin::user()->can('part.batch.delete')) {
+        if (! Admin::user()->can('part.batch.delete')) {
             return $this->response()
                 ->error('你没有权限执行此操作！')
                 ->refresh();

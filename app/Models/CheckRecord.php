@@ -22,7 +22,7 @@ class CheckRecord extends Model
     protected $table = 'check_records';
 
     /**
-     * 盘点记录有一个雇员
+     * 盘点记录有一个雇员.
      * @return HasOne
      */
     public function user(): HasOne

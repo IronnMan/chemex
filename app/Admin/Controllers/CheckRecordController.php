@@ -30,7 +30,6 @@ use Dcat\Admin\Widgets\Tab;
  */
 class CheckRecordController extends AdminController
 {
-
     public function exportReport($check_id)
     {
         return CheckService::report($check_id);
@@ -91,7 +90,7 @@ class CheckRecordController extends AdminController
                     }
                 }
                 $report_url = route('export.check.report', ['check_id' => $this->id]);
-                $actions->append("<a href='$report_url' target='_blank'>✨ " . trans('main.generate_report') . "</a>");
+                $actions->append("<a href='$report_url' target='_blank'>✨ ".trans('main.generate_report').'</a>');
             });
 
             $grid->toolsWithOutline(false);
@@ -180,7 +179,7 @@ class CheckRecordController extends AdminController
     {
         return Show::make($id, new CheckRecord(['user']), function (Show $show) {
             $show->field('id');
-            $show->field('check_item')->using(Data::items());;
+            $show->field('check_item')->using(Data::items());
             $show->field('start_time');
             $show->field('end_time');
             $show->field('user.name');
@@ -235,7 +234,7 @@ class CheckRecordController extends AdminController
                 $check_record = \App\Models\CheckRecord::where('check_item', $form->check_item)
                     ->where('status', 0)
                     ->first();
-                if (!empty($check_record)) {
+                if (! empty($check_record)) {
                     return $form->response()
                         ->error(trans('check_record_incomplete'));
                 }

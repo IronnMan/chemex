@@ -51,6 +51,7 @@ class StaffRecordController extends AdminController
                 if ($this->ad_tag === 1) {
                     return "<span class='badge badge-primary mr-1'>AD</span>$name";
                 }
+
                 return $name;
             });
             $grid->column('department.name');
@@ -64,7 +65,7 @@ class StaffRecordController extends AdminController
             $grid->disableBatchDelete();
 
             $grid->batchActions([
-                new StaffRecordBatchDeleteAction()
+                new StaffRecordBatchDeleteAction(),
             ]);
 
             $grid->actions(function (RowActions $actions) {
@@ -76,7 +77,7 @@ class StaffRecordController extends AdminController
             $grid->toolsWithOutline(false);
 
             $grid->tools([
-                new StaffRecordImportAction()
+                new StaffRecordImportAction(),
             ]);
 
             $grid->quickSearch('id', 'name', 'department.name', 'gender', 'title', 'mobile', 'email')
@@ -109,6 +110,7 @@ class StaffRecordController extends AdminController
                 if ($this->ad_tag === 1) {
                     return "<span class='badge badge-primary mr-1'>AD</span>$name";
                 }
+
                 return $name;
             });
             $show->field('department.name');

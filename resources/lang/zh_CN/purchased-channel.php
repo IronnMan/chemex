@@ -1,4 +1,5 @@
 <?php
+
 return [
     'labels' => [
         'PurchasedChannel' => '购入途径',

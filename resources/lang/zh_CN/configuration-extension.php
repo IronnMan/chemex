@@ -1,4 +1,5 @@
 <?php
+
 return [
     'labels' => [
         'Extension' => '平台配置',

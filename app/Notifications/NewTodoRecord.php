@@ -6,7 +6,6 @@ use App\Models\TodoRecord;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 
-
 class NewTodoRecord extends Notification
 {
     use Queueable;
@@ -45,7 +44,7 @@ class NewTodoRecord extends Notification
             'title' => '你有新的待办',
             'content' => '一个新的待办已经交由你负责。',
             'expired' => $this->todo_record->end,
-            'url' => route('todo.records.show', $this->todo_record->id)
+            'url' => route('todo.records.show', $this->todo_record->id),
         ];
     }
 }

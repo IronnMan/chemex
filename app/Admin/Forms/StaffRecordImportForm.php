@@ -16,7 +16,7 @@ use League\Flysystem\FileNotFoundException;
 class StaffRecordImportForm extends Form
 {
     /**
-     * 处理表单提交逻辑
+     * 处理表单提交逻辑.
      * @param array $input
      * @return JsonResponse
      */
@@ -24,12 +24,12 @@ class StaffRecordImportForm extends Form
     {
         if ($input['type'] == 'file') {
             $file = $input['file'];
-            $file_path = public_path('uploads/' . $file);
+            $file_path = public_path('uploads/'.$file);
             try {
                 $rows = Excel::import($file_path)->first()->toArray();
                 foreach ($rows as $row) {
                     try {
-                        if (!empty($row['名称']) && !empty($row['部门']) && !empty($row['性别'])) {
+                        if (! empty($row['名称']) && ! empty($row['部门']) && ! empty($row['性别'])) {
                             $staff_department = StaffDepartment::where('name', $row['部门'])->first();
                             if (empty($staff_department)) {
                                 $staff_department = new StaffDepartment();
@@ -40,13 +40,13 @@ class StaffRecordImportForm extends Form
                             $staff_record->name = $row['名称'];
                             $staff_record->department_id = $staff_department->id;
                             $staff_record->gender = $row['性别'];
-                            if (!empty($row['职位'])) {
+                            if (! empty($row['职位'])) {
                                 $staff_record->title = $row['职位'];
                             }
-                            if (!empty($row['手机'])) {
+                            if (! empty($row['手机'])) {
                                 $staff_record->mobile = $row['手机'];
                             }
-                            if (!empty($row['邮箱'])) {
+                            if (! empty($row['邮箱'])) {
                                 $staff_record->email = $row['邮箱'];
                             }
                             $staff_record->save();
@@ -58,18 +58,19 @@ class StaffRecordImportForm extends Form
                         return $this->response()->error($exception->getMessage());
                     }
                 }
+
                 return $this->response()
                     ->success('文件导入成功！')
                     ->refresh();
             } catch (IOException $e) {
                 return $this->response()
-                    ->error('文件读写失败：' . $e->getMessage());
+                    ->error('文件读写失败：'.$e->getMessage());
             } catch (UnsupportedTypeException $e) {
                 return $this->response()
-                    ->error('不支持的文件类型：' . $e->getMessage());
+                    ->error('不支持的文件类型：'.$e->getMessage());
             } catch (FileNotFoundException $e) {
                 return $this->response()
-                    ->error('文件不存在：' . $e->getMessage());
+                    ->error('文件不存在：'.$e->getMessage());
             }
         }
 
@@ -87,7 +88,7 @@ class StaffRecordImportForm extends Form
     }
 
     /**
-     * 构造表单
+     * 构造表单.
      */
     public function form()
     {

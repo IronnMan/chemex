@@ -12,12 +12,12 @@ class ServiceIssueCreateAction extends RowAction
     protected $title = '❓ 报告故障';
 
     /**
-     * 渲染模态框
+     * 渲染模态框.
      * @return Modal|string
      */
     public function render()
     {
-        if (!Admin::user()->can('service.issue.create')) {
+        if (! Admin::user()->can('service.issue.create')) {
             return '你没有权限执行此操作！';
         }
 
@@ -26,7 +26,7 @@ class ServiceIssueCreateAction extends RowAction
 
         return Modal::make()
             ->lg()
-            ->title('报告 ' . $this->getRow()->name . ' 发生的故障')
+            ->title('报告 '.$this->getRow()->name.' 发生的故障')
             ->body($form)
             ->button($this->title);
     }

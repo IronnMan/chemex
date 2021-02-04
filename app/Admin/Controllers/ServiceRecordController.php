@@ -30,9 +30,9 @@ class ServiceRecordController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('track') . trans('main.track'), route('service.tracks.index'));
-                $tab->addLink(Data::icon('issue') . trans('main.issue'), route('service.issues.index'));
+                $tab->add(Data::icon('record').trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('track').trans('main.track'), route('service.tracks.index'));
+                $tab->addLink(Data::icon('issue').trans('main.issue'), route('service.issues.index'));
                 $row->column(12, $tab);
             });
     }
@@ -50,7 +50,7 @@ class ServiceRecordController extends AdminController
             $grid->column('description');
             $grid->column('status')->switch('green');
             $grid->column('device.name')->link(function () {
-                if (!empty($this->device)) {
+                if (! empty($this->device)) {
                     return route('device.records.show', $this->device['id']);
                 }
             });

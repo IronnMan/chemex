@@ -12,12 +12,12 @@ class PartTrackCreateUpdateAction extends RowAction
     protected $title = '💻 归属设备';
 
     /**
-     * 渲染模态框
+     * 渲染模态框.
      * @return Modal|string
      */
     public function render()
     {
-        if (!Admin::user()->can('part.track.create_update')) {
+        if (! Admin::user()->can('part.track.create_update')) {
             return '你没有权限执行此操作！';
         }
 
@@ -26,7 +26,7 @@ class PartTrackCreateUpdateAction extends RowAction
 
         return Modal::make()
             ->lg()
-            ->title('将 ' . $this->getRow()->name . ' 归属到设备')
+            ->title('将 '.$this->getRow()->name.' 归属到设备')
             ->body($form)
             ->button($this->title);
     }

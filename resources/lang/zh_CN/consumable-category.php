@@ -1,4 +1,5 @@
 <?php
+
 return [
     'labels' => [
         'ConsumableCategory' => '耗材',

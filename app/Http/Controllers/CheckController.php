@@ -10,14 +10,13 @@ use Pour\Base\Uni;
 
 class CheckController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('jwt.auth');
     }
 
     /**
-     * 盘点
+     * 盘点.
      * @param $string
      * @return JsonResponse
      */
@@ -25,12 +24,13 @@ class CheckController extends Controller
     {
         $item = explode(':', $string)[0];
         $id = explode(':', $string)[1];
-        if (!empty($item) && !empty($id)) {
+        if (! empty($item) && ! empty($id)) {
             $check_record = CheckRecord::where('check_item', $item)
                 ->where('status', 0)
                 ->first();
             if (empty($check_record)) {
                 $return = Uni::rr(404, '没有找到相对应的盘点任务');
+
                 return response()->json($return);
             }
             $item = Info::getItemRecordByClass($item, $id);
@@ -45,18 +45,19 @@ class CheckController extends Controller
         } else {
             $return = Uni::rr(404, '参数不完整');
         }
+
         return response()->json($return);
     }
 
     /**
-     * 盘点动作
+     * 盘点动作.
      * @return JsonResponse
      */
     public function checkDo(): JsonResponse
     {
         $track_id = request('track_id') ?? null;
         $check_option = request('option') ?? null;
-        if (!empty($track_id) && !empty($check_option)) {
+        if (! empty($track_id) && ! empty($check_option)) {
             $user = auth('api')->user();
             $check_track = CheckTrack::where('id', $track_id)->first();
             if (empty($check_track)) {
@@ -70,6 +71,7 @@ class CheckController extends Controller
         } else {
             $return = Uni::rr(404, '参数不完整');
         }
+
         return response()->json($return);
     }
 }

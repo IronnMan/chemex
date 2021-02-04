@@ -1,4 +1,5 @@
 <?php
+
 return [
     'site_url' => '站点域名',
     'site_title' => '站点标题',
@@ -12,5 +13,5 @@ return [
     'select_create' => '快速创建选项',
     'theme_color' => '主题色',
     'sidebar_style' => '菜单样式',
-    'site_lang' => '语言'
+    'site_lang' => '语言',
 ];

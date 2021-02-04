@@ -12,12 +12,12 @@ class DeviceRecordDeleteAction extends RowAction
     protected $title = '🔨 删除设备';
 
     /**
-     * 处理动作逻辑
+     * 处理动作逻辑.
      * @return Response
      */
     public function handle(): Response
     {
-        if (!Admin::user()->can('device.record.delete')) {
+        if (! Admin::user()->can('device.record.delete')) {
             return $this->response()
                 ->error('你没有权限执行此操作！')
                 ->refresh();
@@ -31,7 +31,7 @@ class DeviceRecordDeleteAction extends RowAction
     }
 
     /**
-     * 对话框
+     * 对话框.
      * @return string[]
      */
     public function confirm(): array

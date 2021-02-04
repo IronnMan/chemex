@@ -17,6 +17,7 @@ class DcatPlusUIForm extends Form
     public function handle(array $input)
     {
         admin_setting($input);
+
         return $this
             ->response()
             ->success('站点配置更新成功！')
@@ -40,7 +41,7 @@ class DcatPlusUIForm extends Form
                 'default' => '墨蓝',
                 'blue' => '蓝',
                 'blue-light' => '亮蓝',
-                'green' => '墨绿'
+                'green' => '墨绿',
             ])
             ->default(admin_setting('theme_color'));
         $this->radio('sidebar_style', Support::trans('main.sidebar_style'))

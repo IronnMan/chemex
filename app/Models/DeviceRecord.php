@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Crypt;
  * @property string sn
  * @property string mac
  * @property string ip
- * @property double price
+ * @property float price
  * @property string purchased
  * @property string expired
  * @property int purchased_channel_id
@@ -38,7 +38,7 @@ class DeviceRecord extends Model
     protected $table = 'device_records';
 
     /**
-     * 设备记录有一个分类
+     * 设备记录有一个分类.
      * @return HasOne
      */
     public function category(): HasOne
@@ -47,7 +47,7 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 设备记录有一个厂商
+     * 设备记录有一个厂商.
      * @return HasOne
      */
     public function vendor(): HasOne
@@ -56,7 +56,7 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 设备记录有一个购入途径
+     * 设备记录有一个购入途径.
      * @return HasOne
      */
     public function channel(): HasOne
@@ -65,14 +65,14 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 设备记录在远处有很多配件
+     * 设备记录在远处有很多配件.
      * @return HasManyThrough
      */
     public function part(): HasManyThrough
     {
         return $this->hasManyThrough(
-            "Celaraze\\Chemex\\Part\\Models\\PartRecord",  // 远程表
-            "Celaraze\\Chemex\\Part\\Models\\PartTrack",   // 中间表
+            'Celaraze\\Chemex\\Part\\Models\\PartRecord',  // 远程表
+            'Celaraze\\Chemex\\Part\\Models\\PartTrack',   // 中间表
             'device_id',    // 中间表对主表的关联字段
             'id',   // 远程表对中间表的关联字段
             'id',   // 主表对中间表的关联字段
@@ -80,14 +80,14 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 设备记录在远处有很多软件
+     * 设备记录在远处有很多软件.
      * @return HasManyThrough
      */
     public function software(): HasManyThrough
     {
         return $this->hasManyThrough(
-            "Celaraze\\Chemex\\Software\\Models\\SoftwareRecord",  // 远程表
-            "Celaraze\\Chemex\\Software\\Models\\SoftwareTrack",  // 中间表
+            'Celaraze\\Chemex\\Software\\Models\\SoftwareRecord',  // 远程表
+            'Celaraze\\Chemex\\Software\\Models\\SoftwareTrack',  // 中间表
             'device_id',    // 中间表对主表的关联字段
             'id',   // 远程表对中间表的关联字段
             'id',   // 主表对中间表的关联字段
@@ -95,14 +95,14 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 设备记录在远处有很多服务程序
+     * 设备记录在远处有很多服务程序.
      * @return HasManyThrough
      */
     public function service(): HasManyThrough
     {
         return $this->hasManyThrough(
-            "Celaraze\\Chemex\\Service\\Models\\ServiceRecord",  // 远程表
-            "Celaraze\\Chemex\\Service\\Models\\ServiceTrack",  // 中间表
+            'Celaraze\\Chemex\\Service\\Models\\ServiceRecord',  // 远程表
+            'Celaraze\\Chemex\\Service\\Models\\ServiceTrack',  // 中间表
             'device_id',    // 中间表对主表的关联字段
             'id',   // 远程表对中间表的关联字段
             'id',   // 主表对中间表的关联字段
@@ -110,7 +110,7 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 设备记录在远处有一个使用者（雇员）
+     * 设备记录在远处有一个使用者（雇员）.
      * @return HasManyThrough
      */
     public function staff(): HasManyThrough
@@ -125,13 +125,13 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 对安全密码字段读取做解密转换
+     * 对安全密码字段读取做解密转换.
      * @param $security_password
      * @return array|string
      */
     public function getSecurityPasswordAttribute($security_password)
     {
-        if (!empty($security_password)) {
+        if (! empty($security_password)) {
             try {
                 return Crypt::decryptString($security_password);
             } catch (Exception $exception) {
@@ -141,7 +141,7 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 对安全密码字段写入做加密转换
+     * 对安全密码字段写入做加密转换.
      * @param $security_password
      */
     public function setSecurityPasswordAttribute($security_password)
@@ -150,13 +150,13 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 对管理员密码字段读取做解密转换
+     * 对管理员密码字段读取做解密转换.
      * @param $admin_password
      * @return array|string
      */
     public function getAdminPasswordAttribute($admin_password)
     {
-        if (!empty($admin_password)) {
+        if (! empty($admin_password)) {
             try {
                 return Crypt::decryptString($admin_password);
             } catch (Exception $exception) {
@@ -166,7 +166,7 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 对管理员密码字段写入做加密转换
+     * 对管理员密码字段写入做加密转换.
      * @param $admin_password
      */
     public function setAdminPasswordAttribute($admin_password)
@@ -175,7 +175,7 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 设备分类有一个折旧规则
+     * 设备分类有一个折旧规则.
      * @return HasOne
      */
     public function depreciation(): HasOne

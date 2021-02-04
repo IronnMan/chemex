@@ -20,7 +20,7 @@ class SoftwareTrack extends Model
     protected $table = 'software_tracks';
 
     /**
-     * 软件追踪有一个软件记录
+     * 软件追踪有一个软件记录.
      * @return HasOne
      */
     public function software(): HasOne
@@ -29,7 +29,7 @@ class SoftwareTrack extends Model
     }
 
     /**
-     * 软件追踪有一个设备
+     * 软件追踪有一个设备.
      * @return HasOne
      */
     public function device(): HasOne

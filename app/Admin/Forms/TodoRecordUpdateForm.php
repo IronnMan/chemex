@@ -14,7 +14,7 @@ class TodoRecordUpdateForm extends Form
     use LazyWidget;
 
     /**
-     * 处理表单提交逻辑
+     * 处理表单提交逻辑.
      * @param array $input
      * @return JsonResponse
      */
@@ -46,14 +46,14 @@ class TodoRecordUpdateForm extends Form
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error('失败：' . $e->getMessage());
+                ->error('失败：'.$e->getMessage());
         }
 
         return $return;
     }
 
     /**
-     * 构造表单
+     * 构造表单.
      */
     public function form()
     {

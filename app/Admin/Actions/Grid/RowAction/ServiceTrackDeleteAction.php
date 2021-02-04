@@ -12,12 +12,12 @@ class ServiceTrackDeleteAction extends RowAction
     protected $title = '🔗 解除归属';
 
     /**
-     * 处理动作逻辑
+     * 处理动作逻辑.
      * @return Response
      */
     public function handle(): Response
     {
-        if (!Admin::user()->can('service.track.delete')) {
+        if (! Admin::user()->can('service.track.delete')) {
             return $this->response()
                 ->error('你没有权限执行此操作！')
                 ->refresh();
@@ -38,7 +38,7 @@ class ServiceTrackDeleteAction extends RowAction
     }
 
     /**
-     * 对话框
+     * 对话框.
      * @return string[]
      */
     public function confirm(): array

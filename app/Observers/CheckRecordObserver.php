@@ -17,7 +17,7 @@ class CheckRecordObserver
     public function created(CheckRecord $checkRecord)
     {
         $admin_user = AdminUser::where('id', $checkRecord->user_id)->first();
-        if (!empty($admin_user)) {
+        if (! empty($admin_user)) {
             $admin_user->notify(new NewCheckRecord($checkRecord));
         }
     }

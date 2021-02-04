@@ -31,7 +31,7 @@ class TodoRecord extends Model
 
     /**
      * 修改器
-     * 将标签的数组转为字符串
+     * 将标签的数组转为字符串.
      * @param $value
      */
     public function setTagsAttribute($value)
@@ -40,7 +40,7 @@ class TodoRecord extends Model
     }
 
     /**
-     * 待办记录有一个负责人
+     * 待办记录有一个负责人.
      * @return HasOne
      */
     public function user(): HasOne

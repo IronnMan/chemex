@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\DeviceTrack;
 use App\Models\StaffRecord;
@@ -10,7 +8,7 @@ use App\Models\StaffRecord;
 class StaffService
 {
     /**
-     * 删除雇员
+     * 删除雇员.
      * @param $staff_id
      */
     public static function deleteStaff($staff_id)
